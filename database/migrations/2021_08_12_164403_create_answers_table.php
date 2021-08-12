@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePsychiatristsTable extends Migration
+class CreateAnswersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreatePsychiatristsTable extends Migration
      */
     public function up()
     {
-        Schema::create('psychiatrists', function (Blueprint $table) {
+        Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $atble->string('name');
+            $table->string('answer');
+            $table->unsignedBigInteger('question_id');
+            $table->foreign('question_id')->references('id')->on('questions');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +29,6 @@ class CreatePsychiatristsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('psychiatrists');
+        Schema::dropIfExists('answers');
     }
 }

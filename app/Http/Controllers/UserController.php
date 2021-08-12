@@ -28,6 +28,7 @@ class UserController extends Controller
         $user=User::all();
         return $user;
     }
+    
     //delete user account
     public function delete_account($id){
         $user=User::find($id);
