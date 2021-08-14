@@ -10,7 +10,8 @@ class Question extends Model
     use HasFactory;
     protected $hidden = [];
 
-    public function answer(){
+    public function answers()
+    {
         return $this->hasMany(Answer::class);
     }
 }
