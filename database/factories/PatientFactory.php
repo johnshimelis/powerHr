@@ -2,18 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\DisorderTherapist;
-use App\Models\Model;
+use App\Models\Patient;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class DisorderTherapistFactory extends Factory
+class PatientFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = DisorderTherapist::class;
+    protected $model = Patient::class;
 
     /**
      * Define the model's default state.
@@ -23,8 +22,7 @@ class DisorderTherapistFactory extends Factory
     public function definition()
     {
         return [
-            'disorder_id' => rand(1, 100),
-            'therapist_id' => rand(1, 100),
+            //
         ];
     }
 }

@@ -7,6 +7,17 @@ use Illuminate\Http\Request;
 
 class TherapistController extends Controller
 {
+    public function completeProfile()
+    {
+
+        // needs to hold first name, last name, initials, gender, DOB, address,
+        // city, phone number, 
+        // approved mil degmo ende flag yinur
+
+    }
+
+
+
     public function selectTherapist()
     {
         // return all the therapists selected with their 
@@ -17,5 +28,9 @@ class TherapistController extends Controller
     public function viewSchedule($therpistId)
     {
         // return the right data structure for the schedules. time, date
+    }
+
+    public function updateWorkingHours(){
+        //manipulate the value work hour begin and end to fit their time
     }
 }

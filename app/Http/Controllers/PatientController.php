@@ -2,17 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Disorder;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 
-class DisorderController extends Controller
+class PatientController extends Controller
 {
-
-    public function inputDisorderRecord()
-    {
-        
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -47,10 +41,10 @@ class DisorderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Disorder  $disorder
+     * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function show(Disorder $disorder)
+    public function show(Patient $patient)
     {
         //
     }
@@ -58,10 +52,10 @@ class DisorderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Disorder  $disorder
+     * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function edit(Disorder $disorder)
+    public function edit(Patient $patient)
     {
         //
     }
@@ -70,10 +64,10 @@ class DisorderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Disorder  $disorder
+     * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Disorder $disorder)
+    public function update(Request $request, Patient $patient)
     {
         //
     }
@@ -81,10 +75,10 @@ class DisorderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Disorder  $disorder
+     * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Disorder $disorder)
+    public function destroy(Patient $patient)
     {
         //
     }

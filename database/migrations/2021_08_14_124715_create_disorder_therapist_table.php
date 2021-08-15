@@ -18,6 +18,8 @@ class CreateDisorderTherapistTable extends Migration
             $table->unsignedBigInteger('therapist_id');
             $table->foreign('disorder_id')->references('id')->on('disorder');
             $table->foreign('therapist_id')->references('id')->on('therapist');
+            $table->timestamps();
+
 
         });
     }
