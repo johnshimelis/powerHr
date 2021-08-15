@@ -19,5 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DisorderSeeder::class);
         $this->call(QuestionSeeder::class);
         $this->call(AnswerSeeder::class);
+        $this->call(TherapistSeeder::class);
+        $this->call(DisorderTherapistSeeder::class);
     }
 }

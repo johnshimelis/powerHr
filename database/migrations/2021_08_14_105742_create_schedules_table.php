@@ -18,6 +18,7 @@ class CreateSchedulesTable extends Migration
             $table->date('date');
             $table->time('time');
             $table->string('type');
+            $table->boolean('is_available')->default(1);
             $table->unsignedBigInteger('patient_id');
             $table->unsignedBigInteger('therapist_id');
             $table->foreign('patient_id')->references('id')->on('users');

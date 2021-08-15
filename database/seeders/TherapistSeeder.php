@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Therapist;
 use Illuminate\Database\Seeder;
 
 class TherapistSeeder extends Seeder
@@ -13,6 +14,6 @@ class TherapistSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Therapist::factory(20)->create();
     }
 }

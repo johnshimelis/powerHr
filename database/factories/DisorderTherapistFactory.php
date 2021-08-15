@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Therapist;
+use App\Models\Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TherapistFactory extends Factory
+class DisorderTherapistFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Therapist::class;
+    protected $model = Model::class;
 
     /**
      * Define the model's default state.
@@ -22,9 +22,8 @@ class TherapistFactory extends Factory
     public function definition()
     {
         return [
-            'cv_path' => $this->faker->filePath('public/assets'),
-            'alma_mater' => $this->faker->name,
-            'user_id' => rand(1, 100),
+            'disorder_id' => rand(1, 100),
+            'therapist_id' => rand(1, 100),
         ];
     }
 }

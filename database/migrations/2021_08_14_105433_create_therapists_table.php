@@ -17,6 +17,11 @@ class CreateTherapistsTable extends Migration
             $table->id();
             $table->string('cv_path');
             $table->string('alma_mater');
+            $table->time('work_hour_begin');
+            $table->time('work_hour_end');
+            $table->foreignId('user_id');
+            // $table->unsignedBigInteger('user_id');
+            // $table->references('id')->on('users');
             $table->timestamps();
         });
     }

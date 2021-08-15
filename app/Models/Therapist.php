@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Therapist extends Model
 {
     use HasFactory;
-    public function disorder()
+    public function disorders()
     {
-        return $this->belongsToMany(Therapist::class);
+        return $this->belongsToMany(Therapist::class, 'disorder_therapist');
     }
 }
 

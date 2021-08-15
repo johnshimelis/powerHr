@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Schedule extends Model
 {
     use HasFactory;
+
+    public function therapists()
+    {
+        return ;
+    }
+
+    public function patients()
+    {
+        return ;
+    }
+
+
 }
