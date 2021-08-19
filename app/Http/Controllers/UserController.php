@@ -22,6 +22,9 @@ class UserController extends Controller
                 'role' => 'string',
             ]
         );
+        if($fields->fails()){
+            return response($fields->errors());
+        }
 
         $user = User::create([
             'name' => $fields['name'],
@@ -57,7 +60,7 @@ class UserController extends Controller
                 "message" => "Incorrect Credentials. Please check that both your email and password are correct"
             ], 401);
         }
-
+        // $user = Auth::user(); 
         $token = $user->createToken('myapptoken')->plainTextToken;
 
         $response = [

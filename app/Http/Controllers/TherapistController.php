@@ -43,9 +43,12 @@ class TherapistController extends Controller
         $therapist_with_disorder_specialization=Therapist::find($id)->disorders;
         return response($therapist_with_disorder_specialization,201);
     }
-    // public function therpist_user(){
-    //     return response(User::find(2)->therapist);
+    //Return 1 for updated else 0 for error
+    public function update_therapist_profile(Request $req,$id){
+        $therapist_update=Therapist::find($id)->update($req->all());
+        return response($therapist_update,200);
+    }
+    // public function therapist_disorder_speciality_insertion(){
+    //          return response(auth()->user(),200);
     // }
-
-
 }
