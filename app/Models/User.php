@@ -13,6 +13,10 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
     
+    public function therapist(){
+        return $this->hasOne(Therapist::class);
+    } 
+    
     public function getNameAttribute($value){
         return ucfirst($value);
     }

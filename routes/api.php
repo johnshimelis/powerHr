@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\DisorderController;
+use App\Http\Controllers\TherapistController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -50,3 +51,15 @@ Route::post('add_disorder',[DisorderController::class,'insert_disorder']);
 Route::get('delete_disorder/{id}',[DisorderController::class,'delete_disorder']);
 Route::get('disorder_therapist',[DisorderController::class,'disorder_related_therapists']);
 
+
+
+
+//Therapist Routes
+Route::post('add_therapist',[TherapistController::class,'register_profile']);
+Route::get('therapist/{id}',[TherapistController::class,'fetch_profile']);
+Route::get('all_therapist',[TherapistController::class,'all_therpist']);
+Route::get('all_therapist_specialization',[TherapistController::class,'all_therapists_with_disorder_specialization']);
+Route::get('therapist_specialization/{id}',[TherapistController::class,'therapist_with_specialization']);
+
+
+// Route::get('user_therapist',[TherapistController::class,'therpist_user']);
