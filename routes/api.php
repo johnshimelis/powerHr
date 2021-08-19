@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SurveyController;
+use App\Http\Controllers\DisorderController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,31 +19,14 @@ use App\Http\Controllers\SurveyController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-<<<<<<< HEAD
-Route::view('/', 'welcome');
-
-Route::post('register', [UserController::class, 'register']);
-
-Route::post('login', [UserController::class, 'login']);
-Route::post('is_valid', [UserController::class, 'is_user_input_valid']);
-
-
-Route::group(['middleware' => ['auth:sanctum']], function ($var = null) {
-=======
 
 //protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
->>>>>>> SurveyApi
     Route::get('all_users', [UserController::class, 'all_account']);
     Route::get('delete/{id}', [UserController::class, 'delete_account']);
     Route::get('search/{user_name}', [UserController::class, 'search_account']);
     Route::post('update/{id}', [UserController::class, 'update_account']);
     Route::post('logout', [UserController::class, 'logout']);
-<<<<<<< HEAD
-    Route::get('survey', [SurveyController::class, 'questions']);
-    Route::post('upload', [UserController::class, 'upload_pic']);
-});
-=======
     Route::post('upload', [UserController::class, 'upload_pic']);
     Route::get('survey', [SurveyController::class, 'questions_and_associated_answers']);
 
@@ -61,6 +45,8 @@ Route::post('update_survey_question/{id}',[SurveyController::class,'update_surve
 Route::post('update_survey_answer/{id}',[SurveyController::class,'update_survey_answer']);
 Route::post('delete_survey/{id}',[SurveyController::class,'delete_survey']);
 
-//
+//Disorder Routes
+Route::post('add_disorder',[DisorderController::class,'insert_disorder']);
+Route::get('delete_disorder/{id}',[DisorderController::class,'delete_disorder']);
+Route::get('disorder_therapist',[DisorderController::class,'disorder_related_therapists']);
 
->>>>>>> SurveyApi

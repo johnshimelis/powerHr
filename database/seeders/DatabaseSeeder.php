@@ -19,15 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call(DisorderSeeder::class);
         $this->call(QuestionSeeder::class);
         $this->call(AnswerSeeder::class);
-<<<<<<< HEAD
-<<<<<<< HEAD
         $this->call(TherapistSeeder::class);
         $this->call(DisorderTherapistSeeder::class);
-=======
->>>>>>> SurveyApi
-    }
-=======
-        $this->call(TherapistSeeder::class);
-        }
->>>>>>> surveycontroller update
+        // $this->call(DisorderTherapistSeeder::class);
+}
 }

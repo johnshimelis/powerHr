@@ -25,28 +25,7 @@ class TherapistFactory extends Factory
         $dt = Carbon::now();
         $dateNow = $dt->toDateTimeString();
         return [
-<<<<<<< HEAD
-<<<<<<< HEAD
-            'first_name' => $this->faker->name(),
-            'last_name' => $this->faker->name(),
-            'title' => $this->faker->title(),
-            'gender' => rand(0, 1),
-            'date_of_birth' => $this->faker->date(),
-            'is_approved' => rand(0, 1),
 
-            'profile_photo_path' => $this->faker->filePath(),
-            'license_issue_date' => $this->faker->date(),
-            'cv_path' => $this->faker->filePath('public/assets'),
-            'alma_mater' => $this->faker->name,
-
-            'bio' => $this->faker->text(100),
-            'work_hour_begin' => $this->faker->time(),
-            'work_hour_end' => $this->faker->time(),
-            'user_id' => rand(1, 100),
-=======
-            //
->>>>>>> SurveyApi
-=======
            'first_name'=>$this->faker->name(),
            'last_name'=>$this->faker->name(),
            'title'=>Str::random(4),
@@ -61,7 +40,6 @@ class TherapistFactory extends Factory
            'work_hour_begin'=>"10:40",
            'work_hour_end'=>"11:40",
            'user_id'=>rand(1,100),     
->>>>>>> surveycontroller update
         ];
     }
 }

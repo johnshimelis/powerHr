@@ -9,10 +9,7 @@ class Answer extends Model
 {
     use HasFactory;
     protected $hidden = [];
-<<<<<<< HEAD
-=======
     protected $guarded =[];
->>>>>>> SurveyApi
     public function question()
     {
         return $this->belongsTo(Question::class);

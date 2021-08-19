@@ -8,20 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Disorder extends Model
 {
     use HasFactory;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public function therapists()
-    {
-        return $this->belongsToMany(Disorder::class, 'disorder_therapist');
-=======
-    public function therapist()
-    {
-        return $this->belongsToMany(Disorder::class);
->>>>>>> SurveyApi
-=======
+    protected $hidden = [];
+    protected $guarded =[];
     public function therapists()
     {
         return $this->belongsToMany(Therapist::class);
->>>>>>> surveycontroller update
+
     }
 }
