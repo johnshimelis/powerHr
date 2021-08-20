@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Therapist;
 use Illuminate\Http\Request;
-// use App\Models\User;
+use App\Models\Disorder;
+use Auth;
+
 class TherapistController extends Controller
 {
   //register Therapist Profile 
@@ -48,7 +50,30 @@ class TherapistController extends Controller
         $therapist_update=Therapist::find($id)->update($req->all());
         return response($therapist_update,200);
     }
-    // public function therapist_disorder_speciality_insertion(){
-    //          return response(auth()->user(),200);
-    // }
+    public function therapist_disorder_speciality_insertion(Request $req){
+        if (Auth::check()){
+            if(Auth::user()->role!="Psychiatry"){
+                return response("unauthorized acess",401);
+            }
+
+            else{
+                $therapist_id=Therapist::where('user_id',$req->user()->id)->get()[0]->id;
+                $therapist=Therapist::find($therapist_id);
+                if(!Disorder::where('name',$req->name)->get()){
+                    $disorder_speciality=Disorder::create($req->all());
+                    
+                    }
+                else{
+                    $disorder_speciality=Disorder::where('name',$req->name)->get();
+                    }
+                    $therapy_speciality=$therapist->disorders()->attach($disorder_speciality[0]->id);
+                    return response()->json(
+                           ["message"=>'therapist disorder speciality added successfully',
+                    ]
+                );
+
+            }
+
+    }
+}
 }

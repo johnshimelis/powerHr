@@ -30,7 +30,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('logout', [UserController::class, 'logout']);
     Route::post('upload', [UserController::class, 'upload_pic']);
     Route::get('survey', [SurveyController::class, 'questions_and_associated_answers']);
-
+    Route::post('therapist_speciality',[TherapistController::class,'therapist_disorder_speciality_insertion']);
+    
 });
 
 Route::view('/', 'welcome');
@@ -61,5 +62,4 @@ Route::get('all_therapist',[TherapistController::class,'all_therpist']);
 Route::get('all_therapist_specialization',[TherapistController::class,'all_therapists_with_disorder_specialization']);
 Route::get('therapist_specialization/{id}',[TherapistController::class,'therapist_with_specialization']);
 Route::post('therapist_update/{id}',[TherapistController::class,'update_therapist_profile']);
-// Route::get('therapist_speciality',[TherapistController::class,'therapist_disorder_speciality_insertion']);
 // Route::get('user_therapist',[TherapistController::class,'therpist_user']);

@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Exceptions\PostTooLargeException;
 use Illuminate\Support\Facades\Validator;
-
 class UserController extends Controller
 {
     //create user account
@@ -53,16 +52,13 @@ class UserController extends Controller
                 'password' => 'required|string',
             ]
         );
-
         $user = User::where('email', $fields['email'])->first();
         if (!$user || !Hash::check($fields['password'], $user->password)) {
             return response([
                 "message" => "Incorrect Credentials. Please check that both your email and password are correct"
             ], 401);
         }
-        // $user = Auth::user(); 
         $token = $user->createToken('myapptoken')->plainTextToken;
-
         $response = [
             'user' => $user,
             'token' => $token
