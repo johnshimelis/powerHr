@@ -49,9 +49,7 @@ class TherapistController extends Controller
                    return response("Your Profile is completed");
                }
           }
-      }
-     
-        
+      }  
     }
     //return specific therapist
     public function fetch_profile($id){
@@ -81,31 +79,29 @@ class TherapistController extends Controller
     //Therapist Add his disorder Speciality
     public function therapist_disorder_speciality_insertion(Request $req){
         if (Auth::check()){
-            if(Auth::user()->role!="Therapist"){
-                return response("unauthorized acess",401);
-            }
+                if(Auth::user()->role!="Therapist"){
+                    return response("unauthorized acess",401);
+                }
 
-            else{
-                $validate=$req->validate(
-                    ['name'=>'required']
-                );
-                $therapist_id=Therapist::where('user_id',$req->user()->id)->get()[0]->id;
-                $therapist=Therapist::find($therapist_id);
-                if(!Disorder::where('name',$req->name)->get()){
-                    $disorder_speciality=Disorder::create($req->all());
-                    
-                    }
                 else{
-                    $disorder_speciality=Disorder::where('name',$req->name)->get();
-                    }
-                    $therapy_speciality=$therapist->disorders()->attach($disorder_speciality[0]->id);
-                    return response()->json(
-                           ["message"=>'therapist disorder speciality added successfully',
-                    ]
-                );
+                    $validate=$req->validate(
+                        ['name'=>'required']
+                    );
+                    $therapist_id=Therapist::where('user_id',$req->user()->id)->get()[0]->id;
+                    $therapist=Therapist::find($therapist_id);
+                    if(!Disorder::where('name',$req->name)->get()){
+                        $disorder_speciality=Disorder::create($req->all());
+                        
+                        }
+                    else{
+                        $disorder_speciality=Disorder::where('name',$req->name)->get();
+                        }
+                        $therapy_speciality=$therapist->disorders()->attach($disorder_speciality[0]->id);
+                        return response()->json(
+                            ["message"=>'therapist disorder speciality added successfully',
+                            ]);
+                      }
 
-            }
-
+        }
     }
-}
 }

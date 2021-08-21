@@ -53,7 +53,6 @@ class SurveyController extends Controller
         
     // }
 
-
     #UPDATE SURVEY ANSWER
     public function update_survey_answer(Request $req,$id){
         $answer=Answer::find($id);

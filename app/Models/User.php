@@ -8,14 +8,21 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-
 class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
+
+    public function admin(){
+        return $this->hasOne(Admin::class);
+    }
     
-    public function therapist(){
+    public function therapist(){ 
         return $this->hasOne(Therapist::class);
     } 
+
+    public function student(){
+        return $this->hasOne(Patient::class);
+    }
     
     public function getNameAttribute($value){
         return ucfirst($value);
@@ -38,6 +45,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+
     protected $hidden = [
         'password',
         'remember_token',
@@ -48,6 +56,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
