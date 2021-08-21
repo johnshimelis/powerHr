@@ -21,6 +21,7 @@ class DisorderFactory extends Factory
      */
     public function definition()
     {
+        
         return [
             'name' => $this->faker->text(15)
         ];

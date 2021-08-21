@@ -13,23 +13,20 @@ class UserController extends Controller
     //create user account
     public function register(Request $request)
     {
-        $fields = $request->validate(
+        $fields = validator::make($request->all(),
             [
-                'name' => 'required|string',
                 'email' => 'required|string|unique:users,email',
-                'password' => 'required|string|confirmed',
-                'role' => 'string',
+                'password' => 'required|min:3|string|confirmed',
             ]
         );
         if($fields->fails()){
             return response($fields->errors());
         }
-
+        
         $user = User::create([
-            'name' => $fields['name'],
-            'email' => $fields['email'],
-            'password' => Hash::make($fields['password']),
-            'role' => $fields['role'],
+            'email' => $request->email,
+            'password' => Hash::make($request->password), 
+            'role' => $request->role,
         ]);
 
         $token = $user->createToken('myapptoken')->plainTextToken;
