@@ -6,6 +6,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\DisorderController;
 use App\Http\Controllers\TherapistController;
+use App\Http\Controllers\AdminController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,7 +34,19 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('survey', [SurveyController::class, 'questions_and_associated_answers']);
     Route::post('therapist_speciality',[TherapistController::class,'therapist_disorder_speciality_insertion']);
     Route::post('add_therapist',[TherapistController::class,'register_profile']);
-    
+    //Admin Routes
+    Route::post('register_admin',[AdminController::class,'register_admin']);
+    Route::get('delete_admin/{id}',[AdminController::class,'remove_admin']);
+    Route::post('update_admin/{id}',[AdminController::class,'update_profile']);
+    Route::get('all_admins',[AdminController::class,'all_admins']);
+    Route::get('all_patients',[AdminController::class,'all_patients']);
+    Route::get('remove_patient/{id}',[AdminController::class,'remove_patient']);
+    Route::get('search_patient/{name}',[AdminController::class,'find_patient']);
+    Route::get('all_approved_therapist',[AdminController::class,'all_therapist']);
+    Route::get('all_unapproved_therapist',[AdminController::class,'therapist_unapproved']);
+    Route::get('delete_therapist/{id}',[AdminController::class,'remove_therapist']);
+    Route::get('search_therapist/{name}',[AdminController::class,'search_therapist']);
+    Route::post('approve_therapist/{id}',[AdminController::class,'approve_therapist']);
 });
 
 Route::view('/', 'welcome');

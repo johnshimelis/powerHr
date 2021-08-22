@@ -22,7 +22,7 @@ class PatientController extends Controller
                           'selected_therapist'=>$req->selected_therapist,
                           'user_id'=>$req->user()->id
                       ]);
-                      User::find(Auth::user()->id)->update(['is_profile_complete'=>1]);
+                      Auth::user()->update(['is_profile_complete'=>1]);
                       return response($patient,201);
                       }
                  else{
@@ -66,5 +66,16 @@ class PatientController extends Controller
       );
 
     }
+    // Selected Therapist
+    public function selected_therapist($id){
+        $selected_therapist=Patient::find($id)->selected_therapist;
+        return response()->json(
+            [
+                'patient'=>Patient::find($id),
+                'selected_therapist'=>$selected_therapist,
+            ]
+        );
+    }
+    
 }
     

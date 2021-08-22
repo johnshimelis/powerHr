@@ -51,6 +51,15 @@ class TherapistController extends Controller
           }
       }  
     }
+    public function remove_therapist_speciality($id){
+       $therapist=Therapist::find($id);
+       $therapist->disorders()->detach();
+       return response()->json(
+           [
+               'message'=>'Therapist deleted succesfully'
+           ]
+       );
+    }
     //return specific therapist
     public function fetch_profile($id){
          $therapist=Therapist::find($id);
