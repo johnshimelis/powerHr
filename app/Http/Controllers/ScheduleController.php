@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
-    public function scheduleSession($var = null)
-    {
+    public function scheduleSession(){
         // save the schedule info into the schedule table. 
         // It can include date, time, type, client the schedule is with
     }

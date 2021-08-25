@@ -19,11 +19,23 @@ class DisorderFactory extends Factory
      *
      * @return array
      */
+    
     public function definition()
     {
-        
+       $disorderity=array(
+           'Sexual Abuse',
+           'Trauma',
+           'PTSD',
+           'Depression',
+           'Anxiety',
+           'Stress',
+           'Suicide Trial',
+           'Feel Lonely',
+           'Divorce'
+        );
         return [
-            'name' => $this->faker->text(15)
+            'name' =>$disorderity[array_rand($disorderity)]
         ];
+        
     }
 }

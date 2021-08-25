@@ -20,7 +20,7 @@ class CreatePatientsTable extends Migration
             $table->boolean("gender");
             $table->date("date_of_birth");
             $table->string("level_of_study");
-            $table->string("selected_therapist");
+            $table->string("selected_therapist")->nullable();
             $table->string("profile_pic_path");
             $table->foreignId("user_id");
             $table->timestamps();

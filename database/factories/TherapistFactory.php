@@ -6,6 +6,7 @@ use App\Models\Therapist;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use App\Models\User;
 class TherapistFactory extends Factory
 {
     /**
@@ -31,15 +32,14 @@ class TherapistFactory extends Factory
            'title'=>Str::random(4),
            'gender'=>rand(0,1),
            'date_of_birth'=>$dateNow,
-           'profile_photo_path'=>"App/Pic/photo_name.jpg",
+           'profile_photo_path'=>basename($this->faker->image(storage_path('app/public'))),
            'cv_path'=>"App/File/CV_name.jpg",
            'alma_mater'=>Str::random(15),
            'license_issue_date'=>$dateNow,
            'bio'=>$this->faker->text(100),
            'is_approved'=>rand(0,1),
            'work_hour_begin'=>"10:40",
-           'work_hour_end'=>"11:40",
-           'user_id'=>rand(1,100),     
+           'work_hour_end'=>"11:40",    
         ];
     }
 }

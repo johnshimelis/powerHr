@@ -66,6 +66,21 @@ class PatientController extends Controller
       );
 
     }
+    // Select Therapist
+    public function select_therapist(Request $req,$id){
+     if($req->user()->role=="Patient"){
+       $req->user()->update(
+           [
+               'selected_therapist'=>Therapist::find($id)
+           ]
+       );   
+     }
+     else{
+         return response()->json([
+             'message'=>'Please Login First To select therapist'
+         ]);
+     }
+    }
     // Selected Therapist
     public function selected_therapist($id){
         $selected_therapist=Patient::find($id)->selected_therapist;
