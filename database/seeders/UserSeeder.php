@@ -18,7 +18,9 @@ class UserSeeder extends Seeder
     public function run()
     {
         $disorders=Disorder::factory(10)->create();
-        User::factory(10)->create()->each(function($user) use ($disorders){
+        User::factory(10)->create(
+            ['is_profile_complete'=>1]
+            )->each(function($user) use ($disorders){
             if($user->role=="Therapist"){
             Therapist::factory(1)->create([
                 'user_id'=>$user->id

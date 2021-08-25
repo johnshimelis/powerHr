@@ -7,6 +7,7 @@ use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\DisorderController;
 use App\Http\Controllers\TherapistController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PatientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,12 +48,22 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('delete_therapist/{id}',[AdminController::class,'remove_therapist']);
     Route::get('search_therapist/{name}',[AdminController::class,'search_therapist']);
     Route::post('approve_therapist/{id}',[AdminController::class,'approve_therapist']);
+
+
+    //Patient Routes
+    Route::post('register_patient',[PatientController::class,'register_patient']);
+    Route::get('all_patient',[PatientController::class,'all_patients']);
+    Route::get('patient/{id}',[PatientController::class,'patient']);
+    Route::post('update_patient/{id}',[PatientController::class,'update_profile']);
+    Route::get('delete_patient/{id}',[PatientController::class,'delete_patient']);
+    Route::post('select_therapist/{id}',[PatientController::class,'select_therapist']);
+    Route::get('selected_therapist',[PatientController::class,'selected_therapist']);
 });
 
 Route::view('/', 'welcome');
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
-Route::post('is_valid', [UserController::class, 'is_user_input_valid']);
+// Route::post('is_valid', [UserController::class, 'is_user_input_valid']);
 
 //Survey Routes
 Route::post('add_survey_question',[SurveyController::class,'add_survey_question']);

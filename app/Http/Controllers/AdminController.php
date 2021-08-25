@@ -10,9 +10,11 @@ use App\Models\Patient;
 use App\Models\Therapist;
 class AdminController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
     // complete profile
     public function register_admin(Request $req){
-        if(Auth::check()){
             if($req->user()->role=="Admin"){
                 if(!$req->user()->is_profile_complete==1){
                 $admin=Admin::create([
@@ -33,11 +35,9 @@ class AdminController extends Controller
                     );
                 }
             }
-        }
     }
     // LoggedIn Admin DELETE OTHER ADMIN 
     public function remove_admin(Request $req,$id){
-        if(Auth::check()){
             if($req->user()->role=="Admin"){
                   $admin=Admin::find($id);
                   $admin->user()->delete();
@@ -46,11 +46,10 @@ class AdminController extends Controller
             return response()->json([
                 "message"=>"account deleted succesfully",
             ]);
-        }
+        
     }
     // UPDATE ADMIN PROFILE
     public function update_profile(Request $req,$id){
-        if(Auth::check()){
             if($req->user()->role=="Admin"){
                   $admin=Admin::find($id);
                   $user=User::find($admin->user_id);
@@ -69,7 +68,7 @@ class AdminController extends Controller
                       'message'=>'account updated succesfully'
                   ]);
             }
-        }
+        
     }
     // Return All Admins
     public function all_admins(){

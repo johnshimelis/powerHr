@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Therapist;
 use App\Models\Patient;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class PatientController extends Controller
 { 
     // Register New Patient
@@ -51,7 +51,7 @@ class PatientController extends Controller
     public function update_profile(Request $req,$id){
        $patient=Patient::find($id)->update($req->all());
        return response()->json([
-           'message'=>'update succesfully'
+           'message'=>'updated succesfully'
        ]);
     }
     // Delete Patient
@@ -69,11 +69,14 @@ class PatientController extends Controller
     // Select Therapist
     public function select_therapist(Request $req,$id){
      if($req->user()->role=="Patient"){
-       $req->user()->update(
-           [
-               'selected_therapist'=>Therapist::find($id)
-           ]
-       );   
+         $patient=Patient::where('user_id',$req->user()->id);
+         $therapist=Therapist::find($id);
+         $patient->update(
+             [
+                 'selected_therapist'=>$therapist->first_name,
+                 'therapist_id'=>$therapist->id
+             ]
+        ); 
      }
      else{
          return response()->json([
@@ -82,12 +85,11 @@ class PatientController extends Controller
      }
     }
     // Selected Therapist
-    public function selected_therapist($id){
-        $selected_therapist=Patient::find($id)->selected_therapist;
+    public function selected_therapist(Request $req){
+        $patient=Patient::where('user_id',$req->user()->id)->get()[0];
         return response()->json(
             [
-                'patient'=>Patient::find($id),
-                'selected_therapist'=>$selected_therapist,
+                'Your_therapist'=>$patient->selected_therapist,
             ]
         );
     }

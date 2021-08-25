@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SurveyResponse;
-use App\Models\Question;
 use App\Models\Answer;
 class SurveyResponseController extends Controller
 {
+    // only logged in users access this controller
+     public function __construct(){
+         $this->middleware('auth');
+     }
 
      public function storeResponse(Request $req,$answer_id)
      {
@@ -26,6 +29,7 @@ class SurveyResponseController extends Controller
          ]);
      }
     }
+
      public function fetchresponse(Request $req)
      {
          if($req->user()->role="Patient"){
