@@ -23,7 +23,6 @@ class AnswerFactory extends Factory
         return [
             'answer' => $this->faker->text(40) ,
             'score'=>rand(1,5),
-            'question_id' => rand(1, 100)
         ];
     }
 }

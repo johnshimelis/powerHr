@@ -15,6 +15,9 @@ class CreateSurveyResponsesTable extends Migration
     {
         Schema::create('survey_responses', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('patient_id')->constrained();
+            $table->foreignId('question_id')->constrained();
+            $table->foreignId('answer_id')->constrained();
             $table->timestamps();
         });
     }

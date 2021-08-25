@@ -7,7 +7,14 @@ use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
-    public function scheduleSession(){
+    public function createSession(Request $req){
+        // if(Auth::check()){
+        //     $schedule=Schedule::create([
+        //         'date'=>$req->date,
+        //         'time'=>$req->time,
+        //         'type'=>$req->type
+        //     ]);
+        // }
         // save the schedule info into the schedule table. 
         // It can include date, time, type, client the schedule is with
     }
