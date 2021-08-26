@@ -8,9 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Disorder extends Model
 {
     use HasFactory;
+    protected $hidden = [];
+    protected $guarded =[];
     public function therapists()
     {
-        return $this->belongsToMany(Disorder::class, 'disorder_therapist');
+        return $this->belongsToMany(Therapist::class);
+
     }
     
 }

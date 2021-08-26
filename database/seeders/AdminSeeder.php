@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Therapist;
 use Illuminate\Database\Seeder;
-
-class TherapistSeeder extends Seeder
+use App\Models\Admin;
+class AdminSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +13,6 @@ class TherapistSeeder extends Seeder
      */
     public function run()
     {
-
-      Therapist::factory(100)->create();
+        Admin::factory(15)->create();
     }
 }

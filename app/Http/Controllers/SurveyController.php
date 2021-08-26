@@ -88,7 +88,6 @@ class SurveyController extends Controller
     // public function update_survey_answer(Request $req,){
 
     // }
-    
     #UPDATE SURVEY ANSWER
     public function update_survey_answer(Request $req, $id)
     {

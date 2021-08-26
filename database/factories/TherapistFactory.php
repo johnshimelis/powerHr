@@ -6,7 +6,7 @@ use App\Models\Therapist;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
-
+use App\Models\User;
 class TherapistFactory extends Factory
 {
     /**

@@ -14,10 +14,8 @@ class CreateDisorderTherapistTable extends Migration
     public function up()
     {
         Schema::create('disorder_therapist', function (Blueprint $table) {
-            $table->unsignedBigInteger('disorder_id');
-            $table->unsignedBigInteger('therapist_id');
-            $table->foreign('disorder_id')->references('id')->on('disorder');
-            $table->foreign('therapist_id')->references('id')->on('therapist');
+            $table->foreignId('disorder_id')->constrained();
+            $table->foreignId('therapist_id')->constrained();
             $table->timestamps();
 
         });

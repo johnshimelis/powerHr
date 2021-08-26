@@ -18,14 +18,8 @@ class CreateSchedulesTable extends Migration
             $table->date('date');
             $table->time('time');
             $table->string('type');
-<<<<<<< HEAD
-            // $table->boolean('is_available')->default(1);
-=======
->>>>>>> SurveyApi
-            $table->unsignedBigInteger('patient_id');
-            $table->unsignedBigInteger('therapist_id');
-            $table->foreign('patient_id')->references('id')->on('users');
-            $table->foreign('therapist_id')->references('id')->on('users');
+            $table->foreignId('patient_id')->constrained();
+            $table->foreignId('therapist_id')->constrained();
             $table->timestamps();
         });
     }

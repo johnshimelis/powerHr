@@ -1,18 +1,18 @@
 <?php
 
 namespace Database\Factories;
-use Illuminate\Support\Str;
-use App\Models\Patient;
+
+use App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Therapist;
-class PatientFactory extends Factory
+use Illuminate\Support\Str;
+class AdminFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Patient::class;
+    protected $model = Admin::class;
 
     /**
      * Define the model's default state.
@@ -21,19 +21,10 @@ class PatientFactory extends Factory
      */
     public function definition()
     {
-        $datetime=$this->faker->dateTimeBetween('-40 year','now');
-        $level_of_study=array(
-                'Diploma',
-                'Degree',
-                'HighSchool',
-                'Elementary'
-                );
         return [
             'first_name'=>$this->faker->name(),
             'last_name'=>$this->faker->name(),
             'gender'=>rand(0,1),
-            'date_of_birth'=>$datetime,
-            'level_of_study'=>$level_of_study[array_rand($level_of_study)],
             'profile_pic_path'=>basename($this->faker->image(storage_path('app/public'))),
         ];
     }

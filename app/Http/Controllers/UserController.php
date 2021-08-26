@@ -8,26 +8,25 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Exceptions\PostTooLargeException;
 use Illuminate\Support\Facades\Validator;
-
 class UserController extends Controller
 {
     //create user account
     public function register(Request $request)
     {
-        $fields = $request->validate(
+        $fields = validator::make($request->all(),
             [
-                'name' => 'required|string',
                 'email' => 'required|string|unique:users,email',
-                'password' => 'required|string|confirmed',
-                'role' => 'string',
+                'password' => 'required|min:3|string|confirmed',
             ]
         );
-
+        if($fields->fails()){
+            return response($fields->errors());
+        }
+        
         $user = User::create([
-            'name' => $fields['name'],
-            'email' => $fields['email'],
-            'password' => Hash::make($fields['password']),
-            'role' => $fields['role'],
+            'email' => $request->email,
+            'password' => Hash::make($request->password), 
+            'role' => $request->role,
         ]);
 
         $token = $user->createToken('myapptoken')->plainTextToken;
@@ -49,16 +48,13 @@ class UserController extends Controller
                 'password' => 'required|string',
             ]
         );
-
         $user = User::where('email', $fields['email'])->first();
         if (!$user || !Hash::check($fields['password'], $user->password)) {
             return response([
                 "message" => "Incorrect Credentials. Please check that both your email and password are correct"
             ], 401);
         }
-
         $token = $user->createToken('myapptoken')->plainTextToken;
-
         $response = [
             'user' => $user,
             'token' => $token
@@ -71,8 +67,18 @@ class UserController extends Controller
     {
         auth()->user()->tokens()->delete();
         return [
-            'message' => 'Logged out Succesfully'
+            'message' => 'logged out'
         ];
+
+
+
+        // if(session()->has('user')){
+        //     session()->pull('user');
+        //     return ['message'=>'logged out succesfully'];
+        // }
+        // else{
+        //     return ['message'=>'login first'];
+        // }
     }
 
 
