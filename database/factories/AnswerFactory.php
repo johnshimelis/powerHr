@@ -22,11 +22,7 @@ class AnswerFactory extends Factory
     {
         return [
             'answer' => $this->faker->text(40) ,
-<<<<<<< HEAD
-            'score' => rand(0, 4),
-=======
             'score'=>rand(1,5),
->>>>>>> SurveyApi
             'question_id' => rand(1, 100)
         ];
     }

@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class TherapistController extends Controller
 {
-<<<<<<< HEAD
     public function completeProfile()
     {
 
@@ -19,8 +18,6 @@ class TherapistController extends Controller
 
 
 
-=======
->>>>>>> SurveyApi
     public function selectTherapist()
     {
         // return all the therapists selected with their 
@@ -32,11 +29,8 @@ class TherapistController extends Controller
     {
         // return the right data structure for the schedules. time, date
     }
-<<<<<<< HEAD
 
     public function updateWorkingHours(){
         //manipulate the value work hour begin and end to fit their time
     }
-=======
->>>>>>> SurveyApi
 }

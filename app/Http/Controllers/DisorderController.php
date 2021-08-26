@@ -7,15 +7,12 @@ use Illuminate\Http\Request;
 
 class DisorderController extends Controller
 {
-<<<<<<< HEAD
 
     public function inputDisorderRecord()
     {
         
     }
 
-=======
->>>>>>> SurveyApi
     /**
      * Display a listing of the resource.
      *

@@ -38,22 +38,6 @@ class UserController extends Controller
         ];
 
         return response($response, 201);
-<<<<<<< HEAD
-
-        // try{
-        //     $user=new User;
-        //     $user->name=$req->name;
-        //     $user->role=$req->roles;
-        //     $user->email=$req->email;
-        //     $user->password=Hash::make($req->pass);
-        //     $user->save();
-        //     return $user;
-        // }
-        // catch(QueryException $e){
-        //      return ["message"=>"Email Already Exists"];
-        // }
-=======
->>>>>>> SurveyApi
     }
 
     public function login(Request $request)
@@ -81,41 +65,14 @@ class UserController extends Controller
         ];
 
         return response($response, 201);
-<<<<<<< HEAD
-
-        // $user=User::where(['email'=>$req->email])->first();
-        // if(!$user || !Hash::check($req->pass,$user->password)){
-        //     return ["message"=>"Email or Password error"];
-        // }
-        // else{
-        //     $req->session()->put('user',$user);
-        //     return (["Login Succesfully"=>$user]);
-        // }
-=======
->>>>>>> SurveyApi
     }
 
     public function logout(Request $request)
     {
         auth()->user()->tokens()->delete();
         return [
-<<<<<<< HEAD
-            'message' => 'logged out'
-        ];
-
-
-
-        // if(session()->has('user')){
-        //     session()->pull('user');
-        //     return ['message'=>'logged out succesfully'];
-        // }
-        // else{
-        //     return ['message'=>'login first'];
-        // }
-=======
             'message' => 'Logged out Succesfully'
         ];
->>>>>>> SurveyApi
     }
 
 

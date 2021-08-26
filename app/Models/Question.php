@@ -9,10 +9,7 @@ class Question extends Model
 {
     use HasFactory;
     protected $hidden = [];
-<<<<<<< HEAD
-=======
     protected $guarded =[];
->>>>>>> SurveyApi
 
     public function answers()
     {

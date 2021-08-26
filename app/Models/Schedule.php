@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Schedule extends Model
 {
     use HasFactory;
-<<<<<<< HEAD
 
     public function therapists()
     {
@@ -21,6 +20,4 @@ class Schedule extends Model
     }
 
 
-=======
->>>>>>> SurveyApi
 }
