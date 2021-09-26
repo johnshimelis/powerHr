@@ -12,7 +12,7 @@ class CreateBookingTable extends Migration
 
 		$table->id('id');
 		$table->string('booking_id');
-		$table->integer('salon_id');
+		$table->integer('organization_id');
 		$table->integer('user_id');
 		$table->integer('emp_id');
 		// $table->text('service_id');

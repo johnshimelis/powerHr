@@ -8,9 +8,9 @@
 // {
 
 
-//     public function salon()
+//     public function organization()
 //     {
-//         return $this->belongsTo(Salon::class);
+//         return $this->belongsTo(Organization::class);
 //     }
     
 //     public function employee()

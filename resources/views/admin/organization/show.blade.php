@@ -2,7 +2,7 @@
 @section('content')
 
 @include('layouts.top-header', [
-    'title' => __('Salon') ,
+    'title' => __('Organization') ,
     'class' => 'col-lg-7'
 ])
 
@@ -15,7 +15,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-3 order-lg-2">
                         <div class="card-profile-image">
-                            {{-- <img src="{{asset('storage/images/salon logos/'.$salon->image)}}" class="rounded-circle salon_round"> --}}
+                            {{-- <img src="{{asset('storage/images/organization logos/'.$organization->image)}}" class="rounded-circle organization_round"> --}}
                         </div>
                     </div>
                 </div>
@@ -44,17 +44,17 @@
                     </div>
                     <div class="text-center">
                         <h3>
-                            {{ $salon->name }}<span class="font-weight-light"></span>   
+                            {{ $organization->name }}<span class="font-weight-light"></span>   
                         </h3>
                         <div>
-                            {{__('Phone :')}} {{$salon->phone}}
-                            @if ($salon->website != null)
-                                <br>{{__('Website :')}} {{$salon->website}}
+                            {{__('Phone :')}} {{$organization->phone}}
+                            @if ($organization->website != null)
+                                <br>{{__('Website :')}} {{$organization->website}}
                             @endif
                         </div>
                         <hr class="my-4" />
-                        <p>{{ $salon->desc }}</p>
-                        <a class="btn btn-primary text-white" href="{{url('admin/salon/edit')}}"> {{__('Edit Salon')}} </a>
+                        <p>{{ $organization->desc }}</p>
+                        <a class="btn btn-primary text-white" href="{{url('admin/organization/edit')}}"> {{__('Edit Organization')}} </a>
 
                     </div>
                 </div>
@@ -64,7 +64,7 @@
         <div class="col-xl-8 order-xl-1">
             <div class="card bg-secondary shadow">
                 <div class="card-header border-0">
-                    <h3>{{__('View Salon')}}</h3>
+                    <h3>{{__('View Organization')}}</h3>
                 </div>
                 <div class="card-body">
                     <div class="nav-wrapper">
@@ -87,32 +87,32 @@
                                             <!-- Card body -->
                                             <div class="card-body">
                                                 <?php 
-                                                    $start_time1 = new Carbon\Carbon($salon->sunday['open']);
-                                                    $close_time1 = new Carbon\Carbon($salon->sunday['close']);
+                                                    $start_time1 = new Carbon\Carbon($organization->sunday['open']);
+                                                    $close_time1 = new Carbon\Carbon($organization->sunday['close']);
                                                     
-                                                    $start_time2 = new Carbon\Carbon($salon->monday['open']);
-                                                    $close_time2 = new Carbon\Carbon($salon->monday['close']);
+                                                    $start_time2 = new Carbon\Carbon($organization->monday['open']);
+                                                    $close_time2 = new Carbon\Carbon($organization->monday['close']);
                                                     
-                                                    $start_time3 = new Carbon\Carbon($salon->tuesday['open']);
-                                                    $close_time3 = new Carbon\Carbon($salon->tuesday['close']);
+                                                    $start_time3 = new Carbon\Carbon($organization->tuesday['open']);
+                                                    $close_time3 = new Carbon\Carbon($organization->tuesday['close']);
                                                     
-                                                    $start_time4 = new Carbon\Carbon($salon->wednesday['open']);
-                                                    $close_time4 = new Carbon\Carbon($salon->wednesday['close']);
+                                                    $start_time4 = new Carbon\Carbon($organization->wednesday['open']);
+                                                    $close_time4 = new Carbon\Carbon($organization->wednesday['close']);
                                                     
-                                                    $start_time5 = new Carbon\Carbon($salon->thursday['open']);
-                                                    $close_time5 = new Carbon\Carbon($salon->thursday['close']);
+                                                    $start_time5 = new Carbon\Carbon($organization->thursday['open']);
+                                                    $close_time5 = new Carbon\Carbon($organization->thursday['close']);
                                                     
-                                                    $start_time6 = new Carbon\Carbon($salon->friday['open']);
-                                                    $close_time6 = new Carbon\Carbon($salon->friday['close']);
+                                                    $start_time6 = new Carbon\Carbon($organization->friday['open']);
+                                                    $close_time6 = new Carbon\Carbon($organization->friday['close']);
                                                     
-                                                    $start_time7 = new Carbon\Carbon($salon->saturday['open']);
-                                                    $close_time7 = new Carbon\Carbon($salon->saturday['close']);
+                                                    $start_time7 = new Carbon\Carbon($organization->saturday['open']);
+                                                    $close_time7 = new Carbon\Carbon($organization->saturday['close']);
                                                 ?>    
                                                 <p class="h3 heading text-muted mb-3">{{__('Timings :')}} </p>
                                                 <div class="row align-items-center">
                                                     <span class="font-weight-bold col-3 text-left"> {{__('Sunday :')}}</span>
                                                     <span class="text-muted col">
-                                                        @if ($salon->sunday['open'] == null && $salon->sunday['close'] == null)
+                                                        @if ($organization->sunday['open'] == null && $organization->sunday['close'] == null)
                                                             {{__('OFF DAY')}}
                                                         @else
                                                             {{$start_time1->format('g:i A')}} To {{$close_time1->format('g:i A')}}
@@ -122,7 +122,7 @@
                                                 <div class="row align-items-center">
                                                     <span class="font-weight-bold col-3 text-left"> {{__('Monday :')}}</span>
                                                     <span class="text-muted col">
-                                                        @if ($salon->monday['open'] == null && $salon->monday['close'] == null)
+                                                        @if ($organization->monday['open'] == null && $organization->monday['close'] == null)
                                                             {{__('OFF DAY')}}
                                                         @else
                                                             {{$start_time2->format('g:i A')}} To {{$close_time2->format('g:i A')}}
@@ -132,7 +132,7 @@
                                                 <div class="row align-items-center">
                                                     <span class="font-weight-bold col-3 text-left"> {{__('Tuesday :')}}</span>
                                                     <span class="text-muted col">
-                                                        @if ($salon->tuesday['open'] == null && $salon->tuesday['close'] == null)
+                                                        @if ($organization->tuesday['open'] == null && $organization->tuesday['close'] == null)
                                                             {{__('OFF DAY')}}
                                                         @else
                                                             {{$start_time3->format('g:i A')}} To {{$close_time3->format('g:i A')}}
@@ -142,7 +142,7 @@
                                                 <div class="row align-items-center">        
                                                     <span class="font-weight-bold col-3 text-left"> {{__('Wednesday :')}}</span>
                                                     <span class="text-muted col">
-                                                        @if ($salon->wednesday['open'] == null && $salon->wednesday['close'] == null)
+                                                        @if ($organization->wednesday['open'] == null && $organization->wednesday['close'] == null)
                                                             {{__('OFF DAY')}}
                                                         @else
                                                             {{$start_time4->format('g:i A')}} To {{$close_time4->format('g:i A')}}
@@ -152,7 +152,7 @@
                                                 <div class="row align-items-center">     
                                                     <span class="font-weight-bold col-3 text-left"> {{__('Thursday :')}}</span>
                                                     <span class="text-muted col">
-                                                        @if ($salon->thursday['open'] == null && $salon->thursday['close'] == null)
+                                                        @if ($organization->thursday['open'] == null && $organization->thursday['close'] == null)
                                                             {{__('OFF DAY')}}
                                                         @else
                                                             {{$start_time5->format('g:i A')}} To {{$close_time5->format('g:i A')}}
@@ -162,7 +162,7 @@
                                                 <div class="row align-items-center">    
                                                     <span class="font-weight-bold col-3 text-left"> {{__('Friday :')}}</span>
                                                     <span class="text-muted col">
-                                                        @if ($salon->friday['open'] == null && $salon->friday['close'] == null)
+                                                        @if ($organization->friday['open'] == null && $organization->friday['close'] == null)
                                                             {{__('OFF DAY')}}
                                                         @else
                                                             {{$start_time6->format('g:i A')}} To {{$close_time6->format('g:i A')}}
@@ -172,7 +172,7 @@
                                                 <div class="row align-items-center">   
                                                     <span class="font-weight-bold col-3 text-left"> {{__('Saturday :')}}</span>
                                                     <span class="text-muted col">
-                                                        @if ($salon->saturday['open'] == null && $salon->saturday['close'] == null)
+                                                        @if ($organization->saturday['open'] == null && $organization->saturday['close'] == null)
                                                             {{__('OFF DAY')}}
                                                         @else
                                                             {{$start_time7->format('g:i A')}} To {{$close_time7->format('g:i A')}}
@@ -189,15 +189,15 @@
                                             <!-- Card body -->
                                             <div class="card-body">
                                                 <p class="h3 heading text-muted mb-3">{{__('Contact :')}} </p>
-                                                @if ($salon->website != NULL)
-                                                    <span class="font-weight-bold">{{__('Website :')}} </span><span> &numsp;{{$salon->website}}</span><br>
+                                                @if ($organization->website != NULL)
+                                                    <span class="font-weight-bold">{{__('Website :')}} </span><span> &numsp;{{$organization->website}}</span><br>
                                                 @endif
-                                                <div class="mt-1"><span class="font-weight-bold">{{__('Phone no :')}} </span><span> &numsp;{{$salon->phone}}</span></div>
+                                                <div class="mt-1"><span class="font-weight-bold">{{__('Phone no :')}} </span><span> &numsp;{{$organization->phone}}</span></div>
                                                 <div class="mt-1"><span class="font-weight-bold">{{__('Address :')}} </span></div>
-                                                <div>{{$salon->address}},</div>
-                                                <div>{{$salon->city}} - <span></span>{{$salon->zipcode}},</div>
-                                                <div>{{$salon->state}},</div>
-                                                <div>{{$salon->country}}</div>
+                                                <div>{{$organization->address}},</div>
+                                                <div>{{$organization->city}} - <span></span>{{$organization->zipcode}},</div>
+                                                <div>{{$organization->state}},</div>
+                                                <div>{{$organization->country}}</div>
                                             </div>
                                         </div>
                                     </div>

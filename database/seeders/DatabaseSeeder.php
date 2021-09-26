@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
        
         $this->call(DisorderSeeder::class);
         $this->call(DisorderTherapistSeeder::class);
-        // $this->call(SalonSeeder::class);
+        // $this->call(OrganizationSeeder::class);
         // $this->call(EmployeeSeeder::class);
         // $this->call(BookingSeeder::class);
          

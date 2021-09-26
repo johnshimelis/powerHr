@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\SalonController;
+use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 
@@ -25,8 +25,8 @@ Route::get('/login', function () {
 
 Route::get('/admin/login', [UserController::class, 'admin']);
 Route::post('/admin/login/verify', [UserController::class, 'login_web']);
-Route::get('/admin/salon/create', [SalonController::class, 'create']);
-Route::post('/admin/salon/store', [SalonController::class, 'store']);
+Route::get('/admin/organization/create', [OrganizationController::class, 'create']);
+Route::post('/admin/organization/store', [OrganizationController::class, 'store']);
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     // Route::prefix('admin')->group(function () {
@@ -81,11 +81,11 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('/users/store', [UserDisplayController::class, 'store']);
     Route::get('/users/delete/{id}', [UserDisplayController::class, 'destroy']);
     Route::post('/users/hideUser', [UserDisplayController::class, 'hideUser']);
-    //Salon
-    Route::get('/salon', [SalonController::class, 'index']);
-    Route::get('/salon/create', [SalonController::class, 'create']);
-    Route::get('/salon/edit', [SalonController::class, 'edit']);
-    Route::post('/salon/update/{id}', [SalonController::class, 'update']);
-    Route::post('/salon/hideSalon', [SalonController::class, 'hideSalon']);
-    Route::post('/salon/dayoff', [SalonController::class, 'salonDayOff']);
+    //Organization
+    Route::get('/organization', [OrganizationController::class, 'index']);
+    Route::get('/organization/create', [OrganizationController::class, 'create']);
+    Route::get('/organization/edit', [OrganizationController::class, 'edit']);
+    Route::post('/organization/update/{id}', [OrganizationController::class, 'update']);
+    Route::post('/organization/hideOrganization', [OrganizationController::class, 'hideOrganization']);
+    Route::post('/organization/dayoff', [OrganizationController::class, 'organizationDayOff']);
 });

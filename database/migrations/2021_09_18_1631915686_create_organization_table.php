@@ -4,13 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSalonTable extends Migration
+class CreateOrganizationTable extends Migration
 {
 	public function up()
 	{
-		Schema::create('salon', function (Blueprint $table) {
+		Schema::create('organization', function (Blueprint $table) {
 
-			$table->id('salon_id');
+			$table->id('organization_id');
 			$table->integer('owner_id');
 			$table->string('name');
 			// $table->string('image');
@@ -34,6 +34,6 @@ class CreateSalonTable extends Migration
 
 	public function down()
 	{
-		Schema::dropIfExists('salon');
+		Schema::dropIfExists('organization');
 	}
 }

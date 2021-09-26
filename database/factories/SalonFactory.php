@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Salon;
+use App\Models\Organization;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class SalonFactory extends Factory
+class OrganizationFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Salon::class;
+    protected $model = Organization::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,7 @@ class SalonFactory extends Factory
     public function definition()
     {
         return [
-            'salon_id' => rand(0,10),
+            'organization_id' => rand(0,10),
             'owner_id' => rand(0,10),
             'name' => $this->faker->name,
             'gender' => 'male',

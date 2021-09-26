@@ -81,7 +81,7 @@ iframe{
   width: 150px;
   height: 150px;
 }
-.uploadsalonimg{
+.uploadorganizationimg{
     width: 20%;
     height: 20%;
 }
@@ -148,7 +148,7 @@ table{
 .deletebtn{
   display: inline;
 }
-.salon_img{
+.organization_img{
   height: 150px;
   width: 150px;
 }
@@ -174,7 +174,7 @@ table{
   height: 200px;
   width: 200px;
 }
-.salon_round{
+.organization_round{
     height: 180px !important;
     width: 250px !important;
 }
@@ -187,10 +187,10 @@ table{
 {
     background: linear-gradient(87deg, #ec5172 0, #f3b4a4 100%) !important;
 }
-.text-salon{
+.text-organization{
     color: var(--primary_color);
 }
-.text-salon:hover{
+.text-organization:hover{
     color: var(--primary_color_hover);
 }
 .bg_img{
@@ -205,11 +205,11 @@ table{
     height: 100px;
     width: 100px;
 }
-.logo_size_salon{
+.logo_size_organization{
     height: 10%;
     width: 10%;
 }
-.salon_logo{
+.organization_logo{
     max-width: 150px;
     max-height: 150px;
 }
@@ -217,7 +217,7 @@ table{
   height: 20%;
   width: 20%;
 }
-.banner_size, .offer_size, .salon_size{
+.banner_size, .offer_size, .organization_size{
   height: 25%;
   width: 100%;
 }

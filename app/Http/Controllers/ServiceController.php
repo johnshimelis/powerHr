@@ -5,15 +5,15 @@
 // use App\Http\Controllers\Controller;
 // use Illuminate\Http\Request;
 // use App\Models\Service;
-// use App\Models\Salon;
+// use App\Models\Organization;
 
 // class ServiceController extends Controller
 // {
 //     public function index()
 //     {
-//         $salon = Salon::where('owner_id', Auth()->user()->id)->first();
+//         $organization = Organization::where('owner_id', Auth()->user()->id)->first();
 
-//         $services = Service::where([['salon_id', $salon->salon_id],['isdelete',0]])
+//         $services = Service::where([['organization_id', $organization->organization_id],['isdelete',0]])
 //         ->with(['category'])
 //         ->orderBy('service_id', 'DESC')
 //         ->paginate(10);
@@ -35,7 +35,7 @@
 //             'price' => 'bail|required|numeric',
 //         ]);
 
-//         $salon = Salon::where('owner_id', Auth()->user()->id)->first();
+//         $organization = Organization::where('owner_id', Auth()->user()->id)->first();
 //         $service = new Service();
 
 //         $service->name = $request->name;
@@ -43,7 +43,7 @@
 //         $service->price = $request->price;
 //         $service->time = $request->time;
 //         $service->cat_id = $request->cat_id;
-//         $service->salon_id = $salon->salon_id;
+//         $service->organization_id = $organization->organization_id;
 //         $service->save();
 //         return response()->json(['success' => true,'data' => $service, 'msg' => 'Service create'], 200);
 

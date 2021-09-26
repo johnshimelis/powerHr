@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Salon;
+use App\Models\Organization;
 use App\Models\Booking;
 use App\Models\Service;
 use App\Models\Employee;

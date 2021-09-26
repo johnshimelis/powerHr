@@ -7,9 +7,9 @@
           <div class="col-lg-6 col-7">
             <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
               {{-- <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                  <li class="breadcrumb-item text-white"><a href="{{url('admin/dashboard')}}"><i class="fas fa-home text-salon"></i></a></li>
+                  <li class="breadcrumb-item text-white"><a href="{{url('admin/dashboard')}}"><i class="fas fa-home text-organization"></i></a></li>
                 @if (isset($headerData) && $headerData)
-                    <li class="breadcrumb-item text-white"><a href="{{url($url)}}" class="text-salon">{{$headerData}}</a></li>
+                    <li class="breadcrumb-item text-white"><a href="{{url($url)}}" class="text-organization">{{$headerData}}</a></li>
                 @endif
                 <li class="breadcrumb-item active text-white" aria-current="page">&nbsp;{{$title}} </li>
               </ol> --}}

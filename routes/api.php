@@ -94,7 +94,7 @@ Route::post('therapist_update/{id}', [TherapistController::class, 'update_therap
 // Route::get('user_therapist',[TherapistController::class,'therpist_user']);
 
 
-Route::get('/salon', [AppointmentUserApi::class, 'singleSalon']);
+Route::get('/organization', [AppointmentUserApi::class, 'singleOrganization']);
 Route::get('/categories', [AppointmentUserApi::class ,'categories']);
 
 Route::post('/timeslot', [AppointmentUserApi::class ,'timeSlot']);

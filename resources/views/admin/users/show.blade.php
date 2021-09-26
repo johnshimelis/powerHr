@@ -18,7 +18,7 @@
                     <div class="col-lg-3 order-lg-2">
                         <div class="card-profile-image">
                             <a href="#">
-                                <img src="{{asset('storage/images/users/'.$user->image)}}" class="rounded-circle salon_round">
+                                <img src="{{asset('storage/images/users/'.$user->image)}}" class="rounded-circle organization_round">
                             </a>
                         </div>
                     </div>

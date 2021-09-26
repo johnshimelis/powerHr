@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Salon;
+use App\Models\Organization;
 use Illuminate\Database\Seeder;
 
-class SalonSeeder extends Seeder
+class OrganizationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class SalonSeeder extends Seeder
      */
     public function run()
     {
-      Salon::factory(100)->create();
+      Organization::factory(100)->create();
     }
 }

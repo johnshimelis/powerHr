@@ -12,9 +12,9 @@ class Booking extends Model
     public $appends = ['userDetails','empDetails'];
 
 
-    public function salon()
+    public function organization()
     {
-        return $this->hasOne(Salon::class, 'salon_id', 'salon_id');
+        return $this->hasOne(Organization::class, 'organization_id', 'organization_id');
     }
     public function employee()
     {

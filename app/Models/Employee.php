@@ -9,7 +9,7 @@ class Employee extends Model
     protected $table = 'employee';
     public $primaryKey = 'emp_id';
     public $timestamps = true;
-    public $appends = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday','salon'];
+    public $appends = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday','organization'];
 
     public function getSundayAttribute()
     {
@@ -40,15 +40,15 @@ class Employee extends Model
         return json_decode($this->sat, true);
     }
 
-    public function getSalonAttribute()
+    public function getOrganizationAttribute()
     {
-        $salon = Salon::find($this->attributes['salon_id']);
-        return $salon;
+        $organization = Organization::find($this->attributes['organization_id']);
+        return $organization;
     }
 
-    public function salon()
+    public function organization()
     {
-        return $this->belongsTo(Salon::class);
+        return $this->belongsTo(Organization::class);
     }
     public function booking()
     {

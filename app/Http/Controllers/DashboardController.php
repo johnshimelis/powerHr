@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Auth;
 use App\Models\User;
-use App\Models\Salon;
+use App\Models\Organization;
 use App\Models\Booking;
 use Carbon\Carbon;
 use Redirect;
@@ -18,11 +18,11 @@ class DashboardController extends Controller
     {
         $users = User::where('role', '=', 3)
         ->orderBy('id','DESC')->get();
-        $salon = Salon::first();
+        $organization = Organization::first();
 
 
         // Upcoming
-        $upcommings = Booking::where([['salon_id', 1],['date', '>=', Carbon::today()->toDateString()],['booking_status','Approved']])
+        $upcommings = Booking::where([['organization_id', 1],['date', '>=', Carbon::today()->toDateString()],['booking_status','Approved']])
         ->orderBy('date', 'asc')
         ->orderBy('start_time', 'asc')
         ->take(8)

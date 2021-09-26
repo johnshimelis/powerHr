@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Salon;
+use App\Models\Organization;
 use App\Models\Booking;
 use App\Models\Employee;
 
@@ -20,14 +20,14 @@ class AppointmentUserApi extends Controller
         $request->validate([
             'date' => 'bail|required',
         ]);
-        $id = Salon::first()->salon_id;
+        $id = Organization::first()->organization_id;
 
         $master = array();
         $day = strtolower(Carbon::parse($request->date)->format('l'));
-        $salon = Salon::find($id)->$day;
-        $start_time = new Carbon($request['date'] . ' ' . $salon['open']);
+        $organization = Organization::find($id)->$day;
+        $start_time = new Carbon($request['date'] . ' ' . $organization['open']);
 
-        $end_time = new Carbon($request['date'] . ' ' . $salon['close']);
+        $end_time = new Carbon($request['date'] . ' ' . $organization['close']);
         $diff_in_minutes = $start_time->diffInMinutes($end_time);
         for ($i = 0; $i <= $diff_in_minutes; $i += 30) {
             if ($start_time >= $end_time) {
@@ -61,12 +61,12 @@ class AppointmentUserApi extends Controller
             'date' => 'bail|required',
         ]);
 
-        $salon_id = Salon::first()->salon_id;
+        $organization_id = Organization::first()->organization_id;
         $emp_array = array(); // need to use the following code to fill this with employees
 
         // gets employees and tries to get all the services by that employee
 
-        $emps_all = Employee::where([['salon_id', $salon_id], ['status', 1]])->get();
+        $emps_all = Employee::where([['organization_id', $organization_id], ['status', 1]])->get();
         // $book_service = json_decode($request->service);
 
         // $duration = Service::whereIn('service_id', $book_service)->sum('time') - 1;
@@ -109,7 +109,7 @@ class AppointmentUserApi extends Controller
         }
 
         $emps_final_1 = Employee::whereIn('emp_id', '1')
-            ->get(['emp_id', 'salon_id'])->makeHidden(['salon', 'salon_id', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']);
+            ->get(['emp_id', 'organization_id'])->makeHidden(['organization', 'organization_id', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']);
         $name = $emps_final_1->user()->first();
 
         $emps_final_1->push('name', $name);
@@ -131,11 +131,11 @@ class AppointmentUserApi extends Controller
             'start_time' => 'bail|required',
         ]);
 
-        $salon_id = Salon::first()->salon_id;
+        $organization_id = Organization::first()->organization_id;
         $booking = new Booking();
         $start_time = new Carbon($request['date'] . ' ' . $request['start_time']);
         $booking->end_time = $start_time->addMinutes(60)->format('h:i A');
-        $booking->salon_id = $salon_id;
+        $booking->organization_id = $organization_id;
         $booking->emp_id = $request->emp_id;
         $booking->start_time = $request->start_time;
         $booking->date = $request->date;
@@ -155,28 +155,28 @@ class AppointmentUserApi extends Controller
     {
         $master = array();
         $master['completed'] = Booking::where([['user_id', Auth::user()->id], ['booking_status', 'Completed']])
-            ->with(['employee:emp_id,name,salon_id'])
+            ->with(['employee:emp_id,name,organization_id'])
             ->orderBy('id', 'DESC')->get()
-            ->makeHidden(['userDetails', 'empDetails', 'salon_id', 'created_at', 'updated_at', 'user_id']);
+            ->makeHidden(['userDetails', 'empDetails', 'organization_id', 'created_at', 'updated_at', 'user_id']);
         foreach ($master['completed'] as $item) {
-            $item->employee->makeHidden(['salon',  'salon_id', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']);
+            $item->employee->makeHidden(['organization',  'organization_id', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']);
         }
 
         $master['cancel'] = Booking::where([['user_id', Auth::user()->id], ['booking_status', 'cancel']])
-            ->with(['employee:emp_id,name,salon_id'])
+            ->with(['employee:emp_id,name,organization_id'])
             ->orderBy('id', 'DESC')->get()
-            ->makeHidden(['userDetails', 'empDetails', 'salon_id', 'created_at', 'updated_at', 'user_id']);
+            ->makeHidden(['userDetails', 'empDetails', 'organization_id', 'created_at', 'updated_at', 'user_id']);
         foreach ($master['cancel'] as $item) {
-            $item->employee->makeHidden(['salon', 'salon_id', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']);
+            $item->employee->makeHidden(['organization', 'organization_id', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']);
         }
 
         $master['upcoming_order'] = Booking::where([['user_id', Auth::user()->id], ['booking_status', 'Pending']])
             ->orWhere([['user_id', Auth::user()->id], ['booking_status', 'Approved']])
-            ->with(['employee:emp_id,name,salon_id'])
+            ->with(['employee:emp_id,name,organization_id'])
             ->orderBy('id', 'DESC')->get()
-            ->makeHidden(['userDetails', 'empDetails', 'salon_id', 'created_at', 'updated_at', 'user_id']);
+            ->makeHidden(['userDetails', 'empDetails', 'organization_id', 'created_at', 'updated_at', 'user_id']);
         foreach ($master['upcoming_order'] as $item) {
-            $item->employee->makeHidden(['salon',  'salon_id', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']);
+            $item->employee->makeHidden(['organization',  'organization_id', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']);
         }
 
         return response()->json(['msg' => 'User Appointments', 'data' => $master, 'success' => true], 200);
@@ -186,10 +186,10 @@ class AppointmentUserApi extends Controller
     public function singleAppointment($id)
     {
         $booking = Booking::where('id', $id)
-            ->with(['employee:emp_id,name,salon_id'])
+            ->with(['employee:emp_id,name,organization_id'])
             ->find($id)
-            ->makeHidden(['userDetails', 'empDetails', 'salon_id', 'created_at', 'updated_at', 'user_id']);
-        $booking->employee->makeHidden(['salon', 'salon_id', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']);
+            ->makeHidden(['userDetails', 'empDetails', 'organization_id', 'created_at', 'updated_at', 'user_id']);
+        $booking->employee->makeHidden(['organization', 'organization_id', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']);
         return response()->json(['msg' => 'Single Appointments', 'data' => $booking, 'success' => true], 200);
     }
 

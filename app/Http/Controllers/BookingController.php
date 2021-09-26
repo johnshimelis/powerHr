@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\Salon;
+use App\Models\Organization;
 use App\Models\Booking;
 use App\Models\Service;
 use App\Models\User;
@@ -18,37 +18,37 @@ class BookingController extends Controller
 {
     public function index()
     {
-        $salon = Salon::where('owner_id', Auth()->user()->id)->first();
-        $bookings = Booking::where('salon_id', $salon->salon_id)
+        $organization = Organization::where('owner_id', Auth()->user()->id)->first();
+        $bookings = Booking::where('organization_id', $organization->organization_id)
             ->orderBy('id', 'DESC')
             ->paginate(8);
         $users = User::where([['status', 1], ['role', 3]])->get();
-        // $services = Service::where([['salon_id', $salon->salon_id], ['status', 1]])->get();
-        $emps = Employee::where([['status', 1], ['salon_id', $salon->salon_id]])->get();
+        // $services = Service::where([['organization_id', $organization->organization_id], ['status', 1]])->get();
+        $emps = Employee::where([['status', 1], ['organization_id', $organization->organization_id]])->get();
 
         return view('admin.pages.booking', compact('bookings', 'users', 'emps'));
     }
 
     public function create()
     {
-        $salon_id = Salon::where('owner_id', Auth()->user()->id)->first()->salon_id;
-        // $services = Service::where('salon_id', $salon_id)->get();
+        $organization_id = Organization::where('owner_id', Auth()->user()->id)->first()->organization_id;
+        // $services = Service::where('organization_id', $organization_id)->get();
         $users = User::where([['status', 1], ['role', 3]])->get();
-        $emps = Employee::where([['status', 1], ['salon_id', $salon_id]])->get();
+        $emps = Employee::where([['status', 1], ['organization_id', $organization_id]])->get();
 
         return view('admin.booking.create', compact('users', 'emps'));
     }
 
     public function timeslot(Request $request)
     {
-        $salon = Salon::where('owner_id', Auth()->user()->id)->first(); //
+        $organization = Organization::where('owner_id', Auth()->user()->id)->first(); //
 
         $master = array();
         $day = strtolower(Carbon::parse($request->date)->format('l'));
-        $salon = Salon::find($salon->salon_id)->$day;
-        $start_time = new Carbon($request['date'] . ' ' . $salon['open']);
+        $organization = Organization::find($organization->organization_id)->$day;
+        $start_time = new Carbon($request['date'] . ' ' . $organization['open']);
 
-        $end_time = new Carbon($request['date'] . ' ' . $salon['close']);
+        $end_time = new Carbon($request['date'] . ' ' . $organization['close']);
         $diff_in_minutes = $start_time->diffInMinutes($end_time);
         for ($i = 0; $i <= $diff_in_minutes; $i += 30) {
             if ($start_time >= $end_time) {
@@ -75,10 +75,10 @@ class BookingController extends Controller
 
     public function selectemployee(Request $request)
     {
-        $salon = Salon::where('owner_id', Auth()->user()->id)->first(); //
+        $organization = Organization::where('owner_id', Auth()->user()->id)->first(); //
 
         $emp_array = array();
-        $emps_all = Employee::where([['salon_id', $salon->salon_id], ['status', 1]])->get();
+        $emps_all = Employee::where([['organization_id', $organization->organization_id], ['status', 1]])->get();
         // $book_service = $request->service;
 
         // $duration = Service::whereIn('service_id', $book_service)->sum('time') - 1;
@@ -138,7 +138,7 @@ class BookingController extends Controller
             'emp_id' => 'bail|required',
         ]);
 
-        $salon = Salon::where('owner_id', Auth()->user()->id)->first();
+        $organization = Organization::where('owner_id', Auth()->user()->id)->first();
         $booking = new Booking();
 
         // $services =  str_replace('"', '', json_encode($request->service_id));
@@ -147,7 +147,7 @@ class BookingController extends Controller
 
         $start_time = new Carbon($request['date'] . ' ' . $request['start_time']);
         $booking->end_time = $start_time->addMinutes($duration)->format('h:i A');
-        $booking->salon_id = $salon->salon_id;
+        $booking->organization_id = $organization->organization_id;
         $booking->emp_id = $request->emp_id;
         $booking->start_time = $request->start_time;
         $booking->date = $request->date;

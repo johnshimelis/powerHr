@@ -17,7 +17,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-3 order-lg-2">
                         <div class="card-profile-image">
-                            <img src="{{asset('storage/images/employee/'.$emp->image)}}" class="rounded-circle salon_round">
+                            <img src="{{asset('storage/images/employee/'.$emp->image)}}" class="rounded-circle organization_round">
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                                                 {{-- name --}}
                                                 <div class="form-group">
                                                     <label class="form-control-label" for="name">{{__('Name')}}</label>
-                                                    <input type="text" value="{{old('name', $emp->name)}}" name="name" id="name" class="form-control" placeholder="{{__('Salon Name')}}"  autofocus>
+                                                    <input type="text" value="{{old('name', $emp->name)}}" name="name" id="name" class="form-control" placeholder="{{__('Organization Name')}}"  autofocus>
                                                     @error('name')                                    
                                                         <div class="invalid-div">{{ $message }}</div>
                                                     @enderror
@@ -139,11 +139,11 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{$salon->sunday['open'] == NULL ? 'Day Off':old('sunopen',Carbon\Carbon::parse($emp->sunday['open'])->format('h:i A'))}}"
-                                                                    onclick="salonTimeSunOpen('sun','{{ Carbon\Carbon::parse($salon->sunday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($salon->sunday['close'])->format('h:i A')}}')" 
+                                                                <input type="text" value="{{$organization->sunday['open'] == NULL ? 'Day Off':old('sunopen',Carbon\Carbon::parse($emp->sunday['open'])->format('h:i A'))}}"
+                                                                    onclick="organizationTimeSunOpen('sun','{{ Carbon\Carbon::parse($organization->sunday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($organization->sunday['close'])->format('h:i A')}}')" 
                                                                     class="form-control w-75 day-section-sunopen-emp" name="sunopen" id="open" placeholder="{{__('Opening Time')}}"
-                                                                    {{$salon->sunday['open'] == NULL && $salon->sunday['close'] == NULL ? 'disabled':''}}
-                                                                    {{$salon->sunday['open'] != NULL && $salon->sunday['close'] != NULL ? 'required':''}}
+                                                                    {{$organization->sunday['open'] == NULL && $organization->sunday['close'] == NULL ? 'disabled':''}}
+                                                                    {{$organization->sunday['open'] != NULL && $organization->sunday['close'] != NULL ? 'required':''}}
                                                                 ?>
                                                             </div>
                                                             @error('sunopen')                                    
@@ -154,11 +154,11 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{$salon->sunday['open'] == NULL ? 'Day Off':old('sunclose',Carbon\Carbon::parse($emp->sunday['close'])->format('h:i A'))}}" 
-                                                                    onclick="salonTimeSunClose('sun','{{ Carbon\Carbon::parse($salon->sunday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($salon->sunday['close'])->format('h:i A')}}')" 
+                                                                <input type="text" value="{{$organization->sunday['open'] == NULL ? 'Day Off':old('sunclose',Carbon\Carbon::parse($emp->sunday['close'])->format('h:i A'))}}" 
+                                                                    onclick="organizationTimeSunClose('sun','{{ Carbon\Carbon::parse($organization->sunday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($organization->sunday['close'])->format('h:i A')}}')" 
                                                                     class="form-control w-75 day-section-sunclose-emp" name="sunclose" id="close" placeholder="{{__('Closing Time')}}" 
-                                                                    {{$salon->sunday['open'] == NULL && $salon->sunday['close'] == NULL ? 'disabled':''}} 
-                                                                    {{$salon->sunday['open'] != NULL && $salon->sunday['close'] != NULL ? 'required':''}}
+                                                                    {{$organization->sunday['open'] == NULL && $organization->sunday['close'] == NULL ? 'disabled':''}} 
+                                                                    {{$organization->sunday['open'] != NULL && $organization->sunday['close'] != NULL ? 'required':''}}
                                                                 />
                                                             </div>
                                                             @error('sunclose')                                    
@@ -174,11 +174,11 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{$salon->monday['open'] == NULL ? 'Day Off':old('monopen',Carbon\Carbon::parse($emp->monday['open'])->format('h:i A'))}}" 
-                                                                    onclick="salonTimeMonOpen('mon','{{ Carbon\Carbon::parse($salon->monday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($salon->monday['close'])->format('h:i A')}}')" 
+                                                                <input type="text" value="{{$organization->monday['open'] == NULL ? 'Day Off':old('monopen',Carbon\Carbon::parse($emp->monday['open'])->format('h:i A'))}}" 
+                                                                    onclick="organizationTimeMonOpen('mon','{{ Carbon\Carbon::parse($organization->monday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($organization->monday['close'])->format('h:i A')}}')" 
                                                                     class="form-control w-75 day-section-monopen-emp" name="monopen" id="open" 
-                                                                    placeholder="{{__('Opening Time')}}" {{$salon->monday['open'] == NULL && $salon->monday['close'] == NULL ? 'disabled':''}} 
-                                                                    {{$salon->monday['open'] != NULL && $salon->monday['close'] != NULL ? 'required':''}}
+                                                                    placeholder="{{__('Opening Time')}}" {{$organization->monday['open'] == NULL && $organization->monday['close'] == NULL ? 'disabled':''}} 
+                                                                    {{$organization->monday['open'] != NULL && $organization->monday['close'] != NULL ? 'required':''}}
                                                                 />
                                                             </div>
                                                             @error('monopen')                                    
@@ -189,11 +189,11 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{$salon->monday['close'] == NULL ? 'Day Off':old('monclose',Carbon\Carbon::parse($emp->monday['close'])->format('h:i A'))}}" 
-                                                                    onclick="salonTimeMonClose('mon','{{ Carbon\Carbon::parse($salon->monday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($salon->monday['close'])->format('h:i A')}}')"
+                                                                <input type="text" value="{{$organization->monday['close'] == NULL ? 'Day Off':old('monclose',Carbon\Carbon::parse($emp->monday['close'])->format('h:i A'))}}" 
+                                                                    onclick="organizationTimeMonClose('mon','{{ Carbon\Carbon::parse($organization->monday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($organization->monday['close'])->format('h:i A')}}')"
                                                                     class="form-control w-75 day-section-monclose-emp" name="monclose" id="close"
-                                                                    placeholder="{{__('Closing Time')}}" {{$salon->monday['close'] == NULL && $salon->monday['close'] == NULL ? 'disabled':''}}
-                                                                    {{$salon->monday['open'] != NULL && $salon->monday['close'] != NULL ? 'required':''}}
+                                                                    placeholder="{{__('Closing Time')}}" {{$organization->monday['close'] == NULL && $organization->monday['close'] == NULL ? 'disabled':''}}
+                                                                    {{$organization->monday['open'] != NULL && $organization->monday['close'] != NULL ? 'required':''}}
                                                                 />
                                                             </div>
                                                             @error('monclose')                                    
@@ -210,11 +210,11 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{$salon->tuesday['open'] == NULL ? 'Day Off':old('tueopen',Carbon\Carbon::parse($emp->tuesday['open'])->format('h:i A'))}}"
-                                                                    onclick="salonTimeTueOpen('tue','{{ Carbon\Carbon::parse($salon->tuesday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($salon->tuesday['close'])->format('h:i A')}}')" 
+                                                                <input type="text" value="{{$organization->tuesday['open'] == NULL ? 'Day Off':old('tueopen',Carbon\Carbon::parse($emp->tuesday['open'])->format('h:i A'))}}"
+                                                                    onclick="organizationTimeTueOpen('tue','{{ Carbon\Carbon::parse($organization->tuesday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($organization->tuesday['close'])->format('h:i A')}}')" 
                                                                     class="form-control w-75  day-section-tueopen-emp" name="tueopen" id="open" 
-                                                                    placeholder="{{__('Opening Time')}}" {{$salon->tuesday['open'] == NULL && $salon->tuesday['close'] == NULL ? 'disabled':''}} 
-                                                                    {{$salon->tuesday['open'] != NULL && $salon->tuesday['close'] != NULL ? 'required':''}}
+                                                                    placeholder="{{__('Opening Time')}}" {{$organization->tuesday['open'] == NULL && $organization->tuesday['close'] == NULL ? 'disabled':''}} 
+                                                                    {{$organization->tuesday['open'] != NULL && $organization->tuesday['close'] != NULL ? 'required':''}}
                                                                 />
                                                             </div>
                                                             @error('tueopen')                                    
@@ -225,11 +225,11 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{$salon->tuesday['close'] == NULL ? 'Day Off':old('tueclose',Carbon\Carbon::parse($emp->tuesday['close']))->format('h:i A')}}"
-                                                                    onclick="salonTimeTueClose('tue','{{ Carbon\Carbon::parse($salon->tuesday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($salon->tuesday['close'])->format('h:i A')}}')" 
+                                                                <input type="text" value="{{$organization->tuesday['close'] == NULL ? 'Day Off':old('tueclose',Carbon\Carbon::parse($emp->tuesday['close']))->format('h:i A')}}"
+                                                                    onclick="organizationTimeTueClose('tue','{{ Carbon\Carbon::parse($organization->tuesday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($organization->tuesday['close'])->format('h:i A')}}')" 
                                                                     class="form-control w-75 day-section-tueclose-emp" name="tueclose" id="close" 
-                                                                    placeholder="{{__('Closing Time')}}" {{$salon->tuesday['open'] == NULL && $salon->tuesday['close'] == NULL ? 'disabled':''}} 
-                                                                    {{$salon->tuesday['open'] != NULL && $salon->tuesday['close'] != NULL ? 'required':''}}
+                                                                    placeholder="{{__('Closing Time')}}" {{$organization->tuesday['open'] == NULL && $organization->tuesday['close'] == NULL ? 'disabled':''}} 
+                                                                    {{$organization->tuesday['open'] != NULL && $organization->tuesday['close'] != NULL ? 'required':''}}
                                                                 />
                                                             </div>
                                                             @error('tueclose')                                    
@@ -245,11 +245,11 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{$salon->wednesday['open'] == NULL ? 'Day Off':old('wedopen',Carbon\Carbon::parse($emp->wednesday['open'])->format('h:i A'))}}"
-                                                                    onclick="salonTimeWedOpen('wed','{{ Carbon\Carbon::parse($salon->wednesday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($salon->wednesday['close'])->format('h:i A')}}')" 
+                                                                <input type="text" value="{{$organization->wednesday['open'] == NULL ? 'Day Off':old('wedopen',Carbon\Carbon::parse($emp->wednesday['open'])->format('h:i A'))}}"
+                                                                    onclick="organizationTimeWedOpen('wed','{{ Carbon\Carbon::parse($organization->wednesday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($organization->wednesday['close'])->format('h:i A')}}')" 
                                                                     class="form-control w-75 day-section-wedopen-emp" name="wedopen" id="open" placeholder="{{__('Opening Time')}}" 
-                                                                    {{$salon->wednesday['open'] == NULL && $salon->wednesday['close'] == NULL ? 'disabled':''}} 
-                                                                    {{$salon->wednesday['open'] != NULL && $salon->wednesday['close'] != NULL ? 'required':''}}
+                                                                    {{$organization->wednesday['open'] == NULL && $organization->wednesday['close'] == NULL ? 'disabled':''}} 
+                                                                    {{$organization->wednesday['open'] != NULL && $organization->wednesday['close'] != NULL ? 'required':''}}
                                                                 />
                                                             </div>
                                                             @error('wedopen')                                    
@@ -260,11 +260,11 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{$salon->wednesday['close'] == NULL ? 'Day Off':old('wedclose',Carbon\Carbon::parse($emp->wednesday['close'])->format('h:i A'))}}" 
-                                                                    onclick="salonTimeWedClose('wed','{{ Carbon\Carbon::parse($salon->wednesday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($salon->wednesday['close'])->format('h:i A')}}')" 
+                                                                <input type="text" value="{{$organization->wednesday['close'] == NULL ? 'Day Off':old('wedclose',Carbon\Carbon::parse($emp->wednesday['close'])->format('h:i A'))}}" 
+                                                                    onclick="organizationTimeWedClose('wed','{{ Carbon\Carbon::parse($organization->wednesday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($organization->wednesday['close'])->format('h:i A')}}')" 
                                                                     class="form-control w-75 day-section-wedclose-emp" name="wedclose" id="close" placeholder="{{__('Closing Time')}}" 
-                                                                    {{$salon->wednesday['open'] == NULL && $salon->wednesday['close'] == NULL ? 'disabled':''}} 
-                                                                    {{$salon->wednesday['open'] != NULL && $salon->wednesday['close'] != NULL ? 'required':''}}
+                                                                    {{$organization->wednesday['open'] == NULL && $organization->wednesday['close'] == NULL ? 'disabled':''}} 
+                                                                    {{$organization->wednesday['open'] != NULL && $organization->wednesday['close'] != NULL ? 'required':''}}
                                                                 />
                                                             </div>
                                                             @error('wedclose')                                    
@@ -280,11 +280,11 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{$salon->thursday['open'] == NULL ? 'Day Off':old('thuopen',Carbon\Carbon::parse($emp->thursday['open'])->format('h:i A'))}}" 
-                                                                    onclick="salonTimeThuOpen('thu','{{ Carbon\Carbon::parse($salon->thursday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($salon->thursday['close'])->format('h:i A')}}')" 
+                                                                <input type="text" value="{{$organization->thursday['open'] == NULL ? 'Day Off':old('thuopen',Carbon\Carbon::parse($emp->thursday['open'])->format('h:i A'))}}" 
+                                                                    onclick="organizationTimeThuOpen('thu','{{ Carbon\Carbon::parse($organization->thursday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($organization->thursday['close'])->format('h:i A')}}')" 
                                                                     class="form-control w-75 day-section-thuopen-emp" name="thuopen" id="open" placeholder="{{__('Opening Time')}}" 
-                                                                    {{$salon->thursday['open'] == NULL && $salon->thursday['close'] == NULL ? 'disabled':''}} 
-                                                                    {{$salon->thursday['open'] != NULL && $salon->thursday['close'] != NULL ? 'required':''}}
+                                                                    {{$organization->thursday['open'] == NULL && $organization->thursday['close'] == NULL ? 'disabled':''}} 
+                                                                    {{$organization->thursday['open'] != NULL && $organization->thursday['close'] != NULL ? 'required':''}}
                                                                 />
                                                             </div>
                                                             @error('thuopen')                                    
@@ -295,11 +295,11 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{$salon->thursday['close'] == NULL ? 'Day Off':old('thuclose',Carbon\Carbon::parse($emp->thursday['close'])->format('h:i A'))}}" 
-                                                                    onclick="salonTimeThuClose('thu','{{ Carbon\Carbon::parse($salon->thursday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($salon->thursday['close'])->format('h:i A')}}')" 
+                                                                <input type="text" value="{{$organization->thursday['close'] == NULL ? 'Day Off':old('thuclose',Carbon\Carbon::parse($emp->thursday['close'])->format('h:i A'))}}" 
+                                                                    onclick="organizationTimeThuClose('thu','{{ Carbon\Carbon::parse($organization->thursday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($organization->thursday['close'])->format('h:i A')}}')" 
                                                                     class="form-control w-75 day-section-thuclose-emp" name="thuclose" id="close" placeholder="{{__('Closing Time')}}" 
-                                                                    {{$salon->thursday['open'] == NULL && $salon->thursday['close'] == NULL ? 'disabled':''}} 
-                                                                    {{$salon->thursday['open'] != NULL && $salon->thursday['close'] != NULL ? 'required':''}}
+                                                                    {{$organization->thursday['open'] == NULL && $organization->thursday['close'] == NULL ? 'disabled':''}} 
+                                                                    {{$organization->thursday['open'] != NULL && $organization->thursday['close'] != NULL ? 'required':''}}
                                                                 />
                                                             </div>
                                                             @error('thuclose')                                    
@@ -316,11 +316,11 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{$salon->friday['open'] == NULL ? 'Day Off':old('friopen',Carbon\Carbon::parse($emp->friday['open'])->format('h:i A'))}}" 
-                                                                    onclick="salonTimeFriOpen('fri','{{ Carbon\Carbon::parse($salon->friday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($salon->friday['close'])->format('h:i A')}}')" 
+                                                                <input type="text" value="{{$organization->friday['open'] == NULL ? 'Day Off':old('friopen',Carbon\Carbon::parse($emp->friday['open'])->format('h:i A'))}}" 
+                                                                    onclick="organizationTimeFriOpen('fri','{{ Carbon\Carbon::parse($organization->friday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($organization->friday['close'])->format('h:i A')}}')" 
                                                                     class="form-control w-75 day-section-friopen-emp" name="friopen" id="open" placeholder="{{__('Opening Time')}}" 
-                                                                    {{$salon->friday['open'] == NULL && $salon->friday['close'] == NULL ? 'disabled':''}} 
-                                                                    {{$salon->friday['open'] != NULL && $salon->friday['close'] != NULL ? 'required':''}}
+                                                                    {{$organization->friday['open'] == NULL && $organization->friday['close'] == NULL ? 'disabled':''}} 
+                                                                    {{$organization->friday['open'] != NULL && $organization->friday['close'] != NULL ? 'required':''}}
                                                                 />
                                                             </div>
                                                             @error('friopen')                                    
@@ -331,11 +331,11 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{$salon->friday['close'] == NULL ? 'Day Off':old('friclose',Carbon\Carbon::parse($emp->friday['close'])->format('h:i A'))}}"
-                                                                    onclick="salonTimeFriClose('fri','{{ Carbon\Carbon::parse($salon->friday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($salon->friday['close'])->format('h:i A')}}')" 
+                                                                <input type="text" value="{{$organization->friday['close'] == NULL ? 'Day Off':old('friclose',Carbon\Carbon::parse($emp->friday['close'])->format('h:i A'))}}"
+                                                                    onclick="organizationTimeFriClose('fri','{{ Carbon\Carbon::parse($organization->friday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($organization->friday['close'])->format('h:i A')}}')" 
                                                                     class="form-control w-75 day-section-friclose-emp" name="friclose" id="close" placeholder="{{__('Closing Time')}}" 
-                                                                    {{$salon->friday['open'] == NULL && $salon->friday['close'] == NULL ? 'disabled':''}} 
-                                                                    {{$salon->friday['open'] != NULL && $salon->friday['close'] != NULL ? 'required':''}}
+                                                                    {{$organization->friday['open'] == NULL && $organization->friday['close'] == NULL ? 'disabled':''}} 
+                                                                    {{$organization->friday['open'] != NULL && $organization->friday['close'] != NULL ? 'required':''}}
                                                                 />
                                                             </div>
                                                             @error('friclose')                                    
@@ -352,11 +352,11 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{$salon->saturday['open'] == NULL ? 'Day Off':old('satopen',Carbon\Carbon::parse($emp->saturday['open'])->format('h:i A'))}}" 
-                                                                    onclick="salonTimeSatOpen('sat','{{ Carbon\Carbon::parse($salon->saturday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($salon->saturday['close'])->format('h:i A')}}')" 
+                                                                <input type="text" value="{{$organization->saturday['open'] == NULL ? 'Day Off':old('satopen',Carbon\Carbon::parse($emp->saturday['open'])->format('h:i A'))}}" 
+                                                                    onclick="organizationTimeSatOpen('sat','{{ Carbon\Carbon::parse($organization->saturday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($organization->saturday['close'])->format('h:i A')}}')" 
                                                                     class="form-control w-75 day-section-satopen-emp" name="satopen" id="open" placeholder="{{__('Opening Time')}}"  
-                                                                    {{$salon->saturday['open'] == NULL && $salon->saturday['close'] == NULL ? 'disabled':''}} 
-                                                                    {{$salon->saturday['open'] != NULL && $salon->saturday['close'] != NULL ? 'required':''}}
+                                                                    {{$organization->saturday['open'] == NULL && $organization->saturday['close'] == NULL ? 'disabled':''}} 
+                                                                    {{$organization->saturday['open'] != NULL && $organization->saturday['close'] != NULL ? 'required':''}}
                                                                 />
                                                             </div>
                                                             @error('satopen')                                    
@@ -367,11 +367,11 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{$salon->saturday['close'] == NULL ? 'Day Off':old('satclose',Carbon\Carbon::parse($emp->saturday['close'])->format('h:i A'))}}" 
-                                                                    onclick="salonTimeSatClose('sat','{{ Carbon\Carbon::parse($salon->saturday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($salon->saturday['close'])->format('h:i A')}}')" 
+                                                                <input type="text" value="{{$organization->saturday['close'] == NULL ? 'Day Off':old('satclose',Carbon\Carbon::parse($emp->saturday['close'])->format('h:i A'))}}" 
+                                                                    onclick="organizationTimeSatClose('sat','{{ Carbon\Carbon::parse($organization->saturday['open'])->format('h:i A')}}','{{ Carbon\Carbon::parse($organization->saturday['close'])->format('h:i A')}}')" 
                                                                     class="form-control w-75 day-section-satclose-emp" name="satclose" id="close" placeholder="{{__('Closing Time')}}" 
-                                                                    {{$salon->saturday['open'] == NULL && $salon->saturday['close'] == NULL ? 'disabled':''}} 
-                                                                    {{$salon->saturday['open'] != NULL && $salon->saturday['close'] != NULL ? 'required':''}}
+                                                                    {{$organization->saturday['open'] == NULL && $organization->saturday['close'] == NULL ? 'disabled':''}} 
+                                                                    {{$organization->saturday['open'] != NULL && $organization->saturday['close'] != NULL ? 'required':''}}
                                                                 />
                                                             </div>
                                                             @error('satclose')                                    

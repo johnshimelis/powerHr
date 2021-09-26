@@ -73,7 +73,7 @@
             
               <div class="dropdown-divider"></div>
             
-              <a href="{{url('/admin/salon')}}" class="dropdown-item">
+              <a href="{{url('/admin/organization')}}" class="dropdown-item">
                   <i class="ni ni-scissors"></i>
                   <span>{{ __('My Organization') }}</span>
               </a>

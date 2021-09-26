@@ -16,7 +16,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-3 order-lg-2">
                         <div class="card-profile-image">
-                            {{-- <img src="{{asset('storage/images/employee/'.$emp->image)}}" class="rounded-circle salon_round"> --}}
+                            {{-- <img src="{{asset('storage/images/employee/'.$emp->image)}}" class="rounded-circle organization_round"> --}}
                         </div>
                     </div>
                 </div>

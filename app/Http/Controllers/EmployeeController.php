@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\Service;
-use App\Models\Salon;
+use App\Models\Organization;
 use App\Models\Booking;
 use Carbon\Carbon;
 
@@ -15,8 +15,8 @@ class EmployeeController extends Controller
    
     public function index()
     {
-        $salon = Salon::where('owner_id', Auth()->user()->id)->first();
-        $emps = Employee::where([['salon_id',$salon->salon_id]])
+        $organization = Organization::where('owner_id', Auth()->user()->id)->first();
+        $emps = Employee::where([['organization_id',$organization->organization_id]])
         ->orderBy('emp_id', 'DESC')
         ->paginate(10);
         
@@ -25,10 +25,10 @@ class EmployeeController extends Controller
 
     public function create()
     {
-        $salon = Salon::where('owner_id', Auth()->user()->id)->first();
-        // $services = Service::where(['salon_id', $salon->salon_id])->get();
+        $organization = Organization::where('owner_id', Auth()->user()->id)->first();
+        // $services = Service::where(['organization_id', $organization->organization_id])->get();
         
-        return view('admin/employee/create', compact('salon'));
+        return view('admin/employee/create', compact('organization'));
     }
 
     public function store(Request $request)
@@ -41,8 +41,8 @@ class EmployeeController extends Controller
 
         $emp = new Employee();
 
-        $salon = Salon::where('owner_id', Auth()->user()->id)->first();
-        $emp->salon_id = $salon->salon_id;
+        $organization = Organization::where('owner_id', Auth()->user()->id)->first();
+        $emp->organization_id = $organization->organization_id;
         $emp->name = $request->name;
         $emp->email = $request->email;
         $emp->phone = $request->phone;
@@ -111,8 +111,8 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         $emp = Employee::find($id);
-        $salon = Salon::where('owner_id', Auth()->user()->id)->first();
-        // $services = Service::where(['salon_id', $salon->salon_id])->get();
+        $organization = Organization::where('owner_id', Auth()->user()->id)->first();
+        // $services = Service::where(['organization_id', $organization->organization_id])->get();
 
         $appointment = Booking::where('emp_id',$id)->get();
         $arr = array();
@@ -123,7 +123,7 @@ class EmployeeController extends Controller
         $count = array_count_values($arr);
         $client = array_keys($count);
 
-        return view('admin.employee.edit', compact('emp', 'salon','appointment','client'));
+        return view('admin.employee.edit', compact('emp', 'organization','appointment','client'));
     }
 
     public function update(Request $request, $id)

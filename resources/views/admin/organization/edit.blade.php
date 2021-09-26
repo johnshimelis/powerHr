@@ -3,7 +3,7 @@
 
 
 @include('layouts.top-header', [
-        'title' => __('Salon Edit'),
+        'title' => __('Organization Edit'),
         'class' => 'col-lg-7'
     ])
 
@@ -15,7 +15,7 @@
                 <div class="card-header border-0">
                     <span class="h3">{{__('Edit Organization')}}</span>
                 </div>
-                <form class="form-horizontal form" id="settingform" action="{{url('/admin/salon/update/'.$salon->salon_id)}}" method="post" enctype="multipart/form-data">
+                <form class="form-horizontal form" id="settingform" action="{{url('/admin/organization/update/'.$organization->organization_id)}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row mt-3">
                         <div class="col-3">
@@ -41,13 +41,13 @@
                             <div class="card shadow">
                                 <div class="card-body">
                                     <div class="tab-content" id="myTabContent">
-                                        {{-- Tab 1 Salon Basic Details --}}
+                                        {{-- Tab 1 Organization Basic Details --}}
                                         <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
                                             <h4 class="card-title">{{__('Organization Basic Details')}}</h4>
 
                                             <div class="form-group">
                                                 <label class="form-control-label" for="name">{{__('Name')}}</label>
-                                                <input type="text" value="{{old('name', $salon->name)}}" name="name" id="name" class="form-control" placeholder="{{__('Salon Name')}}" autofocus>
+                                                <input type="text" value="{{old('name', $organization->name)}}" name="name" id="name" class="form-control" placeholder="{{__('Organization Name')}}" autofocus>
                                                 @error('name')                                    
                                                     <div class="invalid-div">{{ $message }}</div>
                                                 @enderror
@@ -55,7 +55,7 @@
                     
                                             <div class="form-group">
                                                 <label for="desc" class="form-control-label">{{__('Description')}}</label>
-                                                <textarea class="form-control" rows="6" id="desc" name="desc" placeholder="{{__('Description of Organization')}}" >{{old('desc', $salon->desc)}}</textarea>
+                                                <textarea class="form-control" rows="6" id="desc" name="desc" placeholder="{{__('Description of Organization')}}" >{{old('desc', $organization->desc)}}</textarea>
                                                 @error('desc')                                    
                                                     <div class="invalid-div">{{ $message }}</div>
                                                 @enderror
@@ -63,17 +63,17 @@
 
                                             {{-- Gender --}}
                                             {{-- <div class="form-group">
-                                                <label class="form-control-label">{{__('Salon for')}}</label><br>
+                                                <label class="form-control-label">{{__('Organization for')}}</label><br>
                                                 <div class="custom-control custom-radio mb-2">
-                                                    <input type="radio" id="male" name="gender" value="Male" class="custom-control-input" <?php if($salon->gender == "Male"){ echo "checked"; } ?>>
+                                                    <input type="radio" id="male" name="gender" value="Male" class="custom-control-input" <?php if($organization->gender == "Male"){ echo "checked"; } ?>>
                                                     <label class="custom-control-label" for="male">{{__('Male')}}</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mb-2">
-                                                    <input type="radio" id="female" name="gender" value="Female" class="custom-control-input" <?php if($salon->gender == "Female"){ echo "checked"; } ?>>
+                                                    <input type="radio" id="female" name="gender" value="Female" class="custom-control-input" <?php if($organization->gender == "Female"){ echo "checked"; } ?>>
                                                     <label class="custom-control-label" for="female">{{__('Female')}}</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mb-2">
-                                                    <input type="radio" id="both" name="gender" value="Both" class="custom-control-input" <?php if($salon->gender == "Both"){ echo "checked"; } ?>>
+                                                    <input type="radio" id="both" name="gender" value="Both" class="custom-control-input" <?php if($organization->gender == "Both"){ echo "checked"; } ?>>
                                                     <label class="custom-control-label" for="both">{{__("Both")}}</label>
                                                 </div>
                                             </div> --}}
@@ -81,7 +81,7 @@
                                             {{-- Website --}}
                                             {{-- <div class="form-group">
                                                 <label for="website" class="form-control-label">{{__('Website Name')}}</label>
-                                                <input type="text" class="form-control" value="{{old('website', $salon->website)}}" name="website" id="website" placeholder="{{__('Website name')}}">
+                                                <input type="text" class="form-control" value="{{old('website', $organization->website)}}" name="website" id="website" placeholder="{{__('Website name')}}">
                                                 @error('website')                                    
                                                     <div class="invalid-div">{{ $message }}</div>
                                                 @enderror
@@ -90,36 +90,36 @@
                                             {{-- Phone no --}}
                                             {{-- <div class="form-group">
                                                 <label for="phone" class="form-control-label">{{__('Phone no')}}</label>
-                                                <input type="text" class="form-control" value="{{old('phone', $salon->phone)}}" name="phone" id="phone" placeholder="{{__('Phone Number')}}" >
+                                                <input type="text" class="form-control" value="{{old('phone', $organization->phone)}}" name="phone" id="phone" placeholder="{{__('Phone Number')}}" >
                                                 @error('phone')                                    
                                                     <div class="invalid-div">{{ $message }}</div>
                                                 @enderror
                                             </div> --}}
                                         </div>
 
-                                        {{-- Tab 2 Salon Logo --}}
+                                        {{-- Tab 2 Organization Logo --}}
                                         <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
-                                            <h4 class="card-title">{{__('Salon Logo')}}</h4>
+                                            <h4 class="card-title">{{__('Organization Logo')}}</h4>
                                             
                                             {{-- Image --}}
                                             {{-- <div class="form-group">
-                                                <label class="form-control-label">{{__('Salon Image')}}</label><br>
+                                                <label class="form-control-label">{{__('Organization Image')}}</label><br>
                                                 <input type="file" id="image" name="image" accept="image/*" onchange="loadFile(event)"><br>
-                                                <img id="output" class="uploadprofileimg mt-3" src="{{asset('storage/images/salon logos/'.$salon->image)}}"/>
+                                                <img id="output" class="uploadprofileimg mt-3" src="{{asset('storage/images/organization logos/'.$organization->image)}}"/>
                                             </div> --}}
 
                                             {{-- Logo --}}
                                             {{-- <div class="form-group">
-                                                <label class="form-control-label"> {{__('Salon Logo')}} </label><br>
+                                                <label class="form-control-label"> {{__('Organization Logo')}} </label><br>
                                                 <input type="file" name="logo" id="logo" accept="image/*" onchange="loadFile1(event)"><br>
-                                                <img src="{{asset('storage/images/salon logos/'.$salon->logo)}}"  id="black_logo_output" class="mt-2 logo_size">
+                                                <img src="{{asset('storage/images/organization logos/'.$organization->logo)}}"  id="black_logo_output" class="mt-2 logo_size">
                                             </div> --}}
                             
                                         </div>
 
                                         {{-- Tab 3 timings --}}
                                         <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
-                                            <h4 class="card-title">{{__('Salon Timings')}}</h4>
+                                            <h4 class="card-title">{{__('Organization Timings')}}</h4>
                                             <div>
                                                 <div class="row align-items-center mb-4">
                                                     <div class="col">
@@ -143,7 +143,7 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{old('sunopen',$salon->sunday['open'])}}" class="form-control day-section-sunopen" name="sunopen" id="open" onchange="salonDayOff('sun','{{$base_url}}')" {{$salon->sunday['open'] == null && $salon->sunday['close'] == null?'disabled': ''}}>
+                                                                <input type="text" value="{{old('sunopen',$organization->sunday['open'])}}" class="form-control day-section-sunopen" name="sunopen" id="open" onchange="organizationDayOff('sun','{{$base_url}}')" {{$organization->sunday['open'] == null && $organization->sunday['close'] == null?'disabled': ''}}>
                                                             </div>
                                                             @error('sunopen')
                                                                 <div class="invalid-div">{{ $message }}</div>
@@ -153,7 +153,7 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{old('sunclose',$salon->sunday['close'])}}" class="form-control day-section-sunclose" name="sunclose" id="close"  onchange="salonDayOff('sun','{{$base_url}}')" {{$salon->sunday['open'] == null && $salon->sunday['close'] == null?'disabled': ''}}>
+                                                                <input type="text" value="{{old('sunclose',$organization->sunday['close'])}}" class="form-control day-section-sunclose" name="sunclose" id="close"  onchange="organizationDayOff('sun','{{$base_url}}')" {{$organization->sunday['open'] == null && $organization->sunday['close'] == null?'disabled': ''}}>
                                                             </div>
                                                             @error('sunclose')                                    
                                                                 <div class="invalid-div">{{ $message }}</div>
@@ -163,7 +163,7 @@
                                                     <div class="col-1">
                                                         <div class="form-group">
                                                             <div class="custom-control custom-checkbox input-group check_center">
-                                                                <input type="checkbox" class="custom-control-input salonCheck" name="sun" value="sun" id="sun_check" onchange="salonDayOff('sun','{{$base_url}}')" {{$salon->sunday['open'] == null && $salon->sunday['close'] == null?'checked': ''}}>
+                                                                <input type="checkbox" class="custom-control-input organizationCheck" name="sun" value="sun" id="sun_check" onchange="organizationDayOff('sun','{{$base_url}}')" {{$organization->sunday['open'] == null && $organization->sunday['close'] == null?'checked': ''}}>
                                                                 <label class="custom-control-label" for="sun_check"></label>
                                                               </div>
                                                         </div>
@@ -176,7 +176,7 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{old('monopen',$salon->monday['open'])}}" class="form-control day-section-monopen" name="monopen" id="open" onchange="salonDayOff('mon','{{$base_url}}')" {{$salon->monday['open'] == null && $salon->monday['close'] == null?'disabled': ''}}>
+                                                                <input type="text" value="{{old('monopen',$organization->monday['open'])}}" class="form-control day-section-monopen" name="monopen" id="open" onchange="organizationDayOff('mon','{{$base_url}}')" {{$organization->monday['open'] == null && $organization->monday['close'] == null?'disabled': ''}}>
                                                             </div>
                                                             @error('monopen')                                    
                                                                 <div class="invalid-div">{{ $message }}</div>
@@ -186,7 +186,7 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{old('monclose',$salon->monday['close'])}}" class="form-control day-section-monclose" name="monclose" id="close"  onchange="salonDayOff('mon','{{$base_url}}')" {{$salon->monday['open'] == null && $salon->monday['close'] == null?'disabled': ''}}>
+                                                                <input type="text" value="{{old('monclose',$organization->monday['close'])}}" class="form-control day-section-monclose" name="monclose" id="close"  onchange="organizationDayOff('mon','{{$base_url}}')" {{$organization->monday['open'] == null && $organization->monday['close'] == null?'disabled': ''}}>
                                                             </div>
                                                             @error('monclose')                                    
                                                                 <div class="invalid-div">{{ $message }}</div>
@@ -196,7 +196,7 @@
                                                     <div class="col-1">
                                                         <div class="form-group">
                                                             <div class="custom-control custom-checkbox input-group check_center">
-                                                                <input type="checkbox" class="custom-control-input salonCheck" name="mon" value="mon" id="mon_check" onchange="salonDayOff('mon','{{$base_url}}')" {{$salon->monday['open'] == null && $salon->monday['close'] == null?'checked': ''}}>
+                                                                <input type="checkbox" class="custom-control-input organizationCheck" name="mon" value="mon" id="mon_check" onchange="organizationDayOff('mon','{{$base_url}}')" {{$organization->monday['open'] == null && $organization->monday['close'] == null?'checked': ''}}>
                                                                 <label class="custom-control-label" for="mon_check"></label>
                                                               </div>
                                                         </div>
@@ -209,7 +209,7 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{old('tueopen',$salon->tuesday['open'])}}" class="form-control day-section-tueopen" name="tueopen" id="open" onchange="salonDayOff('tue','{{$base_url}}')" {{$salon->tuesday['open'] == null && $salon->tuesday['close'] == null?'disabled': ''}}>
+                                                                <input type="text" value="{{old('tueopen',$organization->tuesday['open'])}}" class="form-control day-section-tueopen" name="tueopen" id="open" onchange="organizationDayOff('tue','{{$base_url}}')" {{$organization->tuesday['open'] == null && $organization->tuesday['close'] == null?'disabled': ''}}>
                                                             </div>
                                                             @error('tueopen')                                    
                                                                 <div class="invalid-div">{{ $message }}</div>
@@ -219,7 +219,7 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{old('tueclose',$salon->tuesday['close'])}}" class="form-control day-section-tueclose" name="tueclose" id="close"  onchange="salonDayOff('tue','{{$base_url}}')" {{$salon->tuesday['open'] == null && $salon->tuesday['close'] == null?'disabled': ''}}>
+                                                                <input type="text" value="{{old('tueclose',$organization->tuesday['close'])}}" class="form-control day-section-tueclose" name="tueclose" id="close"  onchange="organizationDayOff('tue','{{$base_url}}')" {{$organization->tuesday['open'] == null && $organization->tuesday['close'] == null?'disabled': ''}}>
                                                             </div>
                                                             @error('tueclose')                                    
                                                                 <div class="invalid-div">{{ $message }}</div>
@@ -229,7 +229,7 @@
                                                     <div class="col-1">
                                                         <div class="form-group">
                                                             <div class="custom-control custom-checkbox input-group check_center">
-                                                                <input type="checkbox" class="custom-control-input salonCheck" name="tue" value="tue" id="tue_check" onchange="salonDayOff('tue','{{$base_url}}')" {{$salon->tuesday['open'] == null && $salon->tuesday['close'] == null?'checked': ''}}>
+                                                                <input type="checkbox" class="custom-control-input organizationCheck" name="tue" value="tue" id="tue_check" onchange="organizationDayOff('tue','{{$base_url}}')" {{$organization->tuesday['open'] == null && $organization->tuesday['close'] == null?'checked': ''}}>
                                                                 <label class="custom-control-label" for="tue_check"></label>
                                                               </div>
                                                         </div>
@@ -242,7 +242,7 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{old('wedopen',$salon->wednesday['open'])}}" class="form-control day-section-wedopen" name="wedopen" id="open" onchange="salonDayOff('wed','{{$base_url}}')" {{$salon->wednesday['open'] == null && $salon->wednesday['close'] == null?'disabled': ''}}>
+                                                                <input type="text" value="{{old('wedopen',$organization->wednesday['open'])}}" class="form-control day-section-wedopen" name="wedopen" id="open" onchange="organizationDayOff('wed','{{$base_url}}')" {{$organization->wednesday['open'] == null && $organization->wednesday['close'] == null?'disabled': ''}}>
                                                             </div>
                                                             @error('wedopen')                                    
                                                                 <div class="invalid-div">{{ $message }}</div>
@@ -252,7 +252,7 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{old('wedclose',$salon->wednesday['close'])}}" class="form-control day-section-wedclose" name="wedclose" id="close"  onchange="salonDayOff('wed','{{$base_url}}')" {{$salon->wednesday['open'] == null && $salon->wednesday['close'] == null?'disabled': ''}}>
+                                                                <input type="text" value="{{old('wedclose',$organization->wednesday['close'])}}" class="form-control day-section-wedclose" name="wedclose" id="close"  onchange="organizationDayOff('wed','{{$base_url}}')" {{$organization->wednesday['open'] == null && $organization->wednesday['close'] == null?'disabled': ''}}>
                                                             </div>
                                                             @error('wedclose')                                    
                                                                 <div class="invalid-div">{{ $message }}</div>
@@ -262,7 +262,7 @@
                                                     <div class="col-1">
                                                         <div class="form-group">
                                                             <div class="custom-control custom-checkbox input-group check_center">
-                                                                <input type="checkbox" class="custom-control-input salonCheck" name="wed" value="wed" id="wed_check" onchange="salonDayOff('wed','{{$base_url}}')" {{$salon->wednesday['open'] == null && $salon->wednesday['close'] == null?'checked': ''}}>
+                                                                <input type="checkbox" class="custom-control-input organizationCheck" name="wed" value="wed" id="wed_check" onchange="organizationDayOff('wed','{{$base_url}}')" {{$organization->wednesday['open'] == null && $organization->wednesday['close'] == null?'checked': ''}}>
                                                                 <label class="custom-control-label" for="wed_check"></label>
                                                               </div>
                                                         </div>
@@ -275,7 +275,7 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{old('thuopen',$salon->thursday['open'])}}" class="form-control day-section-thuopen" name="thuopen" id="open" onchange="salonDayOff('thu','{{$base_url}}')" {{$salon->thursday['open'] == null && $salon->thursday['close'] == null?'disabled': ''}}>
+                                                                <input type="text" value="{{old('thuopen',$organization->thursday['open'])}}" class="form-control day-section-thuopen" name="thuopen" id="open" onchange="organizationDayOff('thu','{{$base_url}}')" {{$organization->thursday['open'] == null && $organization->thursday['close'] == null?'disabled': ''}}>
                                                             </div>
                                                             @error('thuopen')                                    
                                                                 <div class="invalid-div">{{ $message }}</div>
@@ -285,7 +285,7 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{old('thuclose',$salon->thursday['close'])}}" class="form-control day-section-thuclose" name="thuclose" id="close"  onchange="salonDayOff('thu','{{$base_url}}')" {{$salon->thursday['open'] == null && $salon->thursday['close'] == null?'disabled': ''}}>
+                                                                <input type="text" value="{{old('thuclose',$organization->thursday['close'])}}" class="form-control day-section-thuclose" name="thuclose" id="close"  onchange="organizationDayOff('thu','{{$base_url}}')" {{$organization->thursday['open'] == null && $organization->thursday['close'] == null?'disabled': ''}}>
                                                             </div>
                                                             @error('thuclose')                                    
                                                                 <div class="invalid-div">{{ $message }}</div>
@@ -295,7 +295,7 @@
                                                     <div class="col-1">
                                                         <div class="form-group">
                                                             <div class="custom-control custom-checkbox input-group check_center">
-                                                                <input type="checkbox" class="custom-control-input salonCheck" name="thu" value="thu" id="thu_check" onchange="salonDayOff('thu','{{$base_url}}')" {{$salon->thursday['open'] == null && $salon->thursday['close'] == null?'checked': ''}}>
+                                                                <input type="checkbox" class="custom-control-input organizationCheck" name="thu" value="thu" id="thu_check" onchange="organizationDayOff('thu','{{$base_url}}')" {{$organization->thursday['open'] == null && $organization->thursday['close'] == null?'checked': ''}}>
                                                                 <label class="custom-control-label" for="thu_check"></label>
                                                               </div>
                                                         </div>
@@ -308,7 +308,7 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{old('friopen',$salon->friday['open'])}}" class="form-control day-section-friopen" name="friopen" id="open" onchange="salonDayOff('fri','{{$base_url}}')" {{$salon->friday['open'] == null && $salon->friday['close'] == null?'disabled': ''}}>
+                                                                <input type="text" value="{{old('friopen',$organization->friday['open'])}}" class="form-control day-section-friopen" name="friopen" id="open" onchange="organizationDayOff('fri','{{$base_url}}')" {{$organization->friday['open'] == null && $organization->friday['close'] == null?'disabled': ''}}>
                                                             </div>
                                                             @error('friopen')                                    
                                                                 <div class="invalid-div">{{ $message }}</div>
@@ -318,7 +318,7 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{old('friclose',$salon->friday['close'])}}" class="form-control day-section-friclose" name="friclose" id="close"  onchange="salonDayOff('fri','{{$base_url}}')" {{$salon->friday['open'] == null && $salon->friday['close'] == null?'disabled': ''}}>
+                                                                <input type="text" value="{{old('friclose',$organization->friday['close'])}}" class="form-control day-section-friclose" name="friclose" id="close"  onchange="organizationDayOff('fri','{{$base_url}}')" {{$organization->friday['open'] == null && $organization->friday['close'] == null?'disabled': ''}}>
                                                             </div>
                                                             @error('friclose')                                    
                                                                 <div class="invalid-div">{{ $message }}</div>
@@ -328,7 +328,7 @@
                                                     <div class="col-1">
                                                         <div class="form-group">
                                                             <div class="custom-control custom-checkbox input-group check_center">
-                                                                <input type="checkbox" class="custom-control-input salonCheck" name="fri" value="fri" id="fri_check" onchange="salonDayOff('fri','{{$base_url}}')" {{$salon->friday['open'] == null && $salon->friday['close'] == null?'checked': ''}}>
+                                                                <input type="checkbox" class="custom-control-input organizationCheck" name="fri" value="fri" id="fri_check" onchange="organizationDayOff('fri','{{$base_url}}')" {{$organization->friday['open'] == null && $organization->friday['close'] == null?'checked': ''}}>
                                                                 <label class="custom-control-label" for="fri_check"></label>
                                                               </div>
                                                         </div>
@@ -341,7 +341,7 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{old('satopen',$salon->saturday['open'])}}" class="form-control day-section-satopen" name="satopen" id="open" onchange="salonDayOff('sat','{{$base_url}}')" {{$salon->saturday['open'] == null && $salon->saturday['close'] == null?'disabled': ''}}>
+                                                                <input type="text" value="{{old('satopen',$organization->saturday['open'])}}" class="form-control day-section-satopen" name="satopen" id="open" onchange="organizationDayOff('sat','{{$base_url}}')" {{$organization->saturday['open'] == null && $organization->saturday['close'] == null?'disabled': ''}}>
                                                             </div>
                                                             @error('satopen')                                    
                                                                 <div class="invalid-div">{{ $message }}</div>
@@ -351,7 +351,7 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <input type="text" value="{{old('satclose',$salon->saturday['close'])}}" class="form-control day-section-satclose" name="satclose" id="close"  onchange="salonDayOff('sat','{{$base_url}}')" {{$salon->saturday['open'] == null && $salon->saturday['close'] == null?'disabled': ''}}>
+                                                                <input type="text" value="{{old('satclose',$organization->saturday['close'])}}" class="form-control day-section-satclose" name="satclose" id="close"  onchange="organizationDayOff('sat','{{$base_url}}')" {{$organization->saturday['open'] == null && $organization->saturday['close'] == null?'disabled': ''}}>
                                                             </div>
                                                             @error('satclose')                                    
                                                                 <div class="invalid-div">{{ $message }}</div>
@@ -361,7 +361,7 @@
                                                     <div class="col-1">
                                                         <div class="form-group">
                                                             <div class="custom-control custom-checkbox input-group check_center">
-                                                                <input type="checkbox" class="custom-control-input salonCheck" name="sat" value="sat" id="sat_check" onchange="salonDayOff('sat','{{$base_url}}')" {{$salon->saturday['open'] == null && $salon->saturday['close'] == null?'checked': ''}}>
+                                                                <input type="checkbox" class="custom-control-input organizationCheck" name="sat" value="sat" id="sat_check" onchange="organizationDayOff('sat','{{$base_url}}')" {{$organization->saturday['open'] == null && $organization->saturday['close'] == null?'checked': ''}}>
                                                                 <label class="custom-control-label" for="sat_check"></label>
                                                               </div>
                                                         </div>
@@ -370,15 +370,15 @@
                                             </div>
                                         </div>
 
-                                        {{-- Tab 4 Salon Address --}}
+                                        {{-- Tab 4 Organization Address --}}
                                         <div class="tab-pane fade" id="tabs-icons-text-4" role="tabpanel" aria-labelledby="tabs-icons-text-4-tab">
-                                            <h4 class="card-title">{{__('Salon Address')}}</h4>
+                                            <h4 class="card-title">{{__('Organization Address')}}</h4>
                                             <div>
                         
                                                 {{-- Address --}}
                                                 <div class="form-group">
                                                     <label for="address" class="form-control-label">{{__('Address')}}</label>
-                                                    <textarea class="form-control" rows="4" id="address" name="address" placeholder="{{__('Address of salon')}}" >{{old('address', $salon->address)}}</textarea>
+                                                    <textarea class="form-control" rows="4" id="address" name="address" placeholder="{{__('Address of organization')}}" >{{old('address', $organization->address)}}</textarea>
                                                     @error('address')                                    
                                                         <div class="invalid-div">{{ $message }}</div>
                                                     @enderror
@@ -387,7 +387,7 @@
                                                 {{-- Zipcode --}}
                                                 <div class="form-group">
                                                     <label for="zipcode" class="form-control-label">{{__('Zipcode')}}</label>
-                                                    <input type="text" class="form-control" value="{{old('zipcode', $salon->zipcode)}}" name="zipcode" id="zipcode" placeholder="{{__('Zipcode')}}" >
+                                                    <input type="text" class="form-control" value="{{old('zipcode', $organization->zipcode)}}" name="zipcode" id="zipcode" placeholder="{{__('Zipcode')}}" >
                                                     @error('zipcode')                                    
                                                         <div class="invalid-div">{{ $message }}</div>
                                                     @enderror
@@ -396,7 +396,7 @@
                                                 {{-- City --}}
                                                 <div class="form-group">
                                                     <label for="city" class="form-control-label">{{__('City')}}</label>
-                                                    <input type="text" class="form-control" value="{{old('city', $salon->city)}}" name="city" id="city" placeholder="{{__('City')}}" >
+                                                    <input type="text" class="form-control" value="{{old('city', $organization->city)}}" name="city" id="city" placeholder="{{__('City')}}" >
                                                     @error('city')                                    
                                                         <div class="invalid-div">{{ $message }}</div>
                                                     @enderror
@@ -405,7 +405,7 @@
                                                 {{-- State --}}
                                                 <div class="form-group">
                                                     <label for="state" class="form-control-label">{{__('State')}}</label>
-                                                    <input type="text" class="form-control" value="{{old('state', $salon->state)}}" name="state" id="state" placeholder="{{__('State')}}" >
+                                                    <input type="text" class="form-control" value="{{old('state', $organization->state)}}" name="state" id="state" placeholder="{{__('State')}}" >
                                                     @error('state')                                    
                                                         <div class="invalid-div">{{ $message }}</div>
                                                     @enderror
@@ -414,7 +414,7 @@
                                                 {{-- Country --}}
                                                 <div class="form-group">
                                                     <label for="country" class="form-control-label">{{__('Country')}}</label>
-                                                    <input type="text" class="form-control" value="{{old('country', $salon->country)}}" name="country" id="country" placeholder="{{__('Country')}}">
+                                                    <input type="text" class="form-control" value="{{old('country', $organization->country)}}" name="country" id="country" placeholder="{{__('Country')}}">
                                                     @error('country')                                    
                                                         <div class="invalid-div">{{ $message }}</div>
                                                     @enderror
@@ -428,13 +428,13 @@
                                                 {{-- Letitude --}}
                                                 <div class="form-group">
                                                     <label class="form-control-label">{{__('Latitude')}}</label>
-                                                    <input type="text" class="form-control" value="{{$salon->latitude}}" name="lat" id="lat" readonly>
+                                                    <input type="text" class="form-control" value="{{$organization->latitude}}" name="lat" id="lat" readonly>
                                                 </div>
                                                 
                                                 {{-- Longitude --}}
                                                 <div class="form-group">
                                                     <label class="form-control-label">{{__('Longitude')}}</label>
-                                                    <input type="text" class="form-control" value="{{$salon->longitude}}" name="long" id="long" readonly>
+                                                    <input type="text" class="form-control" value="{{$organization->longitude}}" name="long" id="long" readonly>
                                                 </div>
                                             </div>
                                         </div>

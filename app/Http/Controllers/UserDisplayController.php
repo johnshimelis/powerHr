@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Salon;
+use App\Models\Organization;
 use App\Models\Booking;
 use Auth;
 use Hash;
@@ -48,8 +48,8 @@ class UserDisplayController extends Controller
             'code' => ['required', 'numeric'],
         ]);
 
-        $salon = Salon::where('owner_id', Auth::user()->id)->first();
-        $salon_id = $salon->salon_id;
+        $organization = Organization::where('owner_id', Auth::user()->id)->first();
+        $organization_id = $organization->organization_id;
 
         $user = new User();
         $user->name = $request->name;
@@ -57,7 +57,7 @@ class UserDisplayController extends Controller
         $user->code = "+" . $request->code;
         $user->phone = $request->phone;
         $user->password = Hash::make($request->password);
-        $user->added_by = $salon_id;
+        $user->added_by = $organization_id;
         $user->verify = 1;
         $user->save();
         return response()->json(['success' => true, 'data' => $user, 'msg' => 'User create'], 200);

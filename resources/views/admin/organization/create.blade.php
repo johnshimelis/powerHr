@@ -43,12 +43,12 @@
                 <div class="col-md-6 p-0">
                     <div class="card bg-secondary border-0 mb-0">
                         <div class="card-header bg-transparent pb-5">
-                            <h1 class="text-center">{{__('Add Your Salon')}}</h1>
+                            <h1 class="text-center">{{__('Add Your Organization')}}</h1>
                             <div class="mx-4">
                                 <div class="nav-wrapper">
                                     <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i class="ni ni-scissors mr-2"></i>{{__('Salon')}}</a>
+                                            <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i class="ni ni-scissors mr-2"></i>{{__('Organization')}}</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab" href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i class="ni ni-time-alarm mr-2"></i>{{__('Timing')}}</a>
@@ -58,7 +58,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <form class="form-horizontal form" action="{{url('/admin/salon/store')}}" method="post" enctype="multipart/form-data">
+                                <form class="form-horizontal form" action="{{url('/admin/organization/store')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                     <div class="card shadow mx-auto">
                                         <div class="card-body">
@@ -70,7 +70,7 @@
                                                         {{-- <div class="form-group">
                                                             <label class="form-control-label" for="image">{{__('Image')}}</label><br>
                                                             <input type="file"  value="{{old('image')}}" id="image" name="image" accept="image/*" onchange="loadFile(event)" ><br>
-                                                            <img id="output" class="uploadsalonimg mt-3"/>
+                                                            <img id="output" class="uploadorganizationimg mt-3"/>
                                                             @error('image')                                    
                                                                 <div class="invalid-div">{{ $message }}</div>
                                                             @enderror
@@ -80,7 +80,7 @@
                                                         {{-- <div class="form-group">
                                                             <label class="form-control-label">{{__('Logo')}} </label><br>
                                                             <input type="file" name="logo" id="logo" accept="image/*" onchange="loadFile1(event)"><br>
-                                                            <img  id="black_logo_output" class="mt-2 logo_size_salon">
+                                                            <img  id="black_logo_output" class="mt-2 logo_size_organization">
                                                             @error('logo')                                    
                                                                 <div class="invalid-div">{{ $message }}</div>
                                                             @enderror
@@ -89,7 +89,7 @@
                                                         {{-- name --}}
                                                         <div class="form-group">
                                                             <label class="form-control-label" for="name">{{__('Name')}}</label>
-                                                            <input type="text" value="{{old('name')}}" name="name" id="name" class="form-control" placeholder="{{__('Salon Name')}}"  autofocus>
+                                                            <input type="text" value="{{old('name')}}" name="name" id="name" class="form-control" placeholder="{{__('Organization Name')}}"  autofocus>
                                                             @error('name')                                    
                                                                 <div class="invalid-div">{{ $message }}</div>
                                                             @enderror
@@ -98,7 +98,7 @@
                                                         {{-- desc --}}
                                                         <div class="form-group">
                                                             <label for="desc" class="form-control-label">{{__('Description')}}</label>
-                                                            <textarea class="form-control" rows="6" id="desc" name="desc" placeholder="{{__('Description of salon')}}" >{{old('desc')}}</textarea>
+                                                            <textarea class="form-control" rows="6" id="desc" name="desc" placeholder="{{__('Description of organization')}}" >{{old('desc')}}</textarea>
                                                             @error('desc')                                    
                                                                 <div class="invalid-div">{{ $message }}</div>
                                                             @enderror
@@ -107,7 +107,7 @@
                                                         <div class="row">
                                                             {{-- Gender --}}
                                                             {{-- <div class="form-group col-6">
-                                                                <label class="form-control-label">{{__('Salon for')}}</label><br>
+                                                                <label class="form-control-label">{{__('Organization for')}}</label><br>
                                                                 <div class="custom-control custom-radio mb-2">
                                                                     <input type="radio" id="male" name="gender" value="Male" class="custom-control-input">
                                                                     <label class="custom-control-label" for="male">{{__('Male')}}</label>
@@ -188,7 +188,7 @@
                                                             <div class="col-1">
                                                                 <div class="form-group">
                                                                     <div class="custom-control custom-checkbox input-group check_center">
-                                                                        <input type="checkbox" class="custom-control-input salonCheck" name="sun" value="sun" id="sun_check">
+                                                                        <input type="checkbox" class="custom-control-input organizationCheck" name="sun" value="sun" id="sun_check">
                                                                         <label class="custom-control-label" for="sun_check"></label>
                                                                         </div>
                                                                 </div>
@@ -221,7 +221,7 @@
                                                             <div class="col-1">
                                                                 <div class="form-group">
                                                                     <div class="custom-control custom-checkbox input-group check_center">
-                                                                        <input type="checkbox" class="custom-control-input salonCheck" name="mon" value="mon" id="mon_check">
+                                                                        <input type="checkbox" class="custom-control-input organizationCheck" name="mon" value="mon" id="mon_check">
                                                                         <label class="custom-control-label" for="mon_check"></label>
                                                                         </div>
                                                                 </div>
@@ -254,7 +254,7 @@
                                                             <div class="col-1">
                                                                 <div class="form-group">
                                                                     <div class="custom-control custom-checkbox input-group check_center">
-                                                                        <input type="checkbox" class="custom-control-input salonCheck" name="tue" value="tue" id="tue_check">
+                                                                        <input type="checkbox" class="custom-control-input organizationCheck" name="tue" value="tue" id="tue_check">
                                                                         <label class="custom-control-label" for="tue_check"></label>
                                                                         </div>
                                                                 </div>
@@ -287,7 +287,7 @@
                                                             <div class="col-1">
                                                                 <div class="form-group">
                                                                     <div class="custom-control custom-checkbox input-group check_center">
-                                                                        <input type="checkbox" class="custom-control-input salonCheck" name="wed" value="wed" id="wed_check">
+                                                                        <input type="checkbox" class="custom-control-input organizationCheck" name="wed" value="wed" id="wed_check">
                                                                         <label class="custom-control-label" for="wed_check"></label>
                                                                         </div>
                                                                 </div>
@@ -320,7 +320,7 @@
                                                             <div class="col-1">
                                                                 <div class="form-group">
                                                                     <div class="custom-control custom-checkbox input-group check_center">
-                                                                        <input type="checkbox" class="custom-control-input salonCheck" name="thu" value="thu" id="thu_check">
+                                                                        <input type="checkbox" class="custom-control-input organizationCheck" name="thu" value="thu" id="thu_check">
                                                                         <label class="custom-control-label" for="thu_check"></label>
                                                                         </div>
                                                                 </div>
@@ -353,7 +353,7 @@
                                                             <div class="col-1">
                                                                 <div class="form-group">
                                                                     <div class="custom-control custom-checkbox input-group check_center">
-                                                                        <input type="checkbox" class="custom-control-input salonCheck" name="fri" value="fri" id="fri_check">
+                                                                        <input type="checkbox" class="custom-control-input organizationCheck" name="fri" value="fri" id="fri_check">
                                                                         <label class="custom-control-label" for="fri_check"></label>
                                                                         </div>
                                                                 </div>
@@ -386,7 +386,7 @@
                                                             <div class="col-1">
                                                                 <div class="form-group">
                                                                     <div class="custom-control custom-checkbox input-group check_center">
-                                                                        <input type="checkbox" class="custom-control-input salonCheck" name="sat" value="sat" id="sat_check">
+                                                                        <input type="checkbox" class="custom-control-input organizationCheck" name="sat" value="sat" id="sat_check">
                                                                         <label class="custom-control-label" for="sat_check"></label>
                                                                         </div>
                                                                 </div>
@@ -402,7 +402,7 @@
                                                         {{-- Address --}}
                                                         <div class="form-group">
                                                             <label for="address" class="form-control-label">{{__('Address')}}</label>
-                                                            <textarea class="form-control" rows="6" id="address" name="address" placeholder="{{__('Address of salon')}}">{{old('address')}}</textarea>
+                                                            <textarea class="form-control" rows="6" id="address" name="address" placeholder="{{__('Address of organization')}}">{{old('address')}}</textarea>
                                                             @error('address')                                    
                                                                 <div class="invalid-div">{{ $message }}</div>
                                                             @enderror

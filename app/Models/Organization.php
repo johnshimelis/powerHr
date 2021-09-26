@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Salon extends Model
+class Organization extends Model
 {
-    protected $table = 'salon';
-    public $primaryKey = 'salon_id';
+    protected $table = 'organization';
+    public $primaryKey = 'organization_id';
     public $timestamps = true;
 
     public $appends = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];

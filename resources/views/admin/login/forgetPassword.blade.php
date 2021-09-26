@@ -34,7 +34,7 @@
                                     @endif
                                     
                                     <div class="pui-form__element">
-                                        <button class="btn btn-lg btn-primary btn-block btn-salon" type="submit">{{__('SUBMIT')}}</button>
+                                        <button class="btn btn-lg btn-primary btn-block btn-organization" type="submit">{{__('SUBMIT')}}</button>
                                     </div>
                                 </form>
                             </div>

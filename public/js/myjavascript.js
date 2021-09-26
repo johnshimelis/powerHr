@@ -110,12 +110,12 @@ function hideUser(userId)
         error: function(error) {}
     });
 }
-function hideSalon(salonId)
+function hideOrganization(organizationId)
 {
     $.ajax({
-        url: 'salons/hideSalon',
+        url: 'organizations/hideOrganization',
         method: 'post',
-        data: {salonId: salonId, _token: csrf},
+        data: {organizationId: organizationId, _token: csrf},
         success: function(res) {},
         error: function(error) {}
     });
@@ -398,7 +398,7 @@ var loadFile4 = function(event) {
 // day off 
 
 $(document).ready(function() {
-    $('.check_center .salonCheck').on('change', function (e) {
+    $('.check_center .organizationCheck').on('change', function (e) {
         if($(this).prop("checked") == true){
             $('.input-group  input[name="'+this.value+'open"]').attr('disabled', true);
             $('.input-group  input[name="'+this.value+'close"]').attr('disabled', true);
@@ -443,130 +443,130 @@ for (let i = 0; i < arr.length; i++)
     });
 }
 // sun
-function salonTimeSunOpen(day,salonOpen,salonClose){
+function organizationTimeSunOpen(day,organizationOpen,organizationClose){
     $('.day-section-'+day+'open-emp').timepicker({
         timeFormat: 'h:i A',
         disableTextInput: true,
-        minTime: salonOpen,
-        maxTime: salonClose,
+        minTime: organizationOpen,
+        maxTime: organizationClose,
     });
 }
-function salonTimeSunClose(day,salonOpen,salonClose){
+function organizationTimeSunClose(day,organizationOpen,organizationClose){
     $('.day-section-'+day+'close-emp').timepicker({
         timeFormat: 'h:i A',
         disableTextInput: true,
-        minTime: salonOpen,
-        maxTime: salonClose,
+        minTime: organizationOpen,
+        maxTime: organizationClose,
     });
 }
 // mon
-function salonTimeMonOpen(day,salonOpen,salonClose){
+function organizationTimeMonOpen(day,organizationOpen,organizationClose){
     $('.day-section-'+day+'open-emp').timepicker({
         timeFormat: 'h:i A',
         disableTextInput: true,
-        minTime: salonOpen,
-        maxTime: salonClose,
+        minTime: organizationOpen,
+        maxTime: organizationClose,
     });
 }
-function salonTimeMonClose(day,salonOpen,salonClose){
+function organizationTimeMonClose(day,organizationOpen,organizationClose){
     $('.day-section-'+day+'close-emp').timepicker({
         timeFormat: 'h:i A',
         disableTextInput: true,
-        minTime: salonOpen,
-        maxTime: salonClose,
+        minTime: organizationOpen,
+        maxTime: organizationClose,
     });
 }
 // tue
-function salonTimeTueOpen(day,salonOpen,salonClose){
+function organizationTimeTueOpen(day,organizationOpen,organizationClose){
     $('.day-section-'+day+'open-emp').timepicker({
         timeFormat: 'h:i A',
         disableTextInput: true,
-        minTime: salonOpen,
-        maxTime: salonClose,
+        minTime: organizationOpen,
+        maxTime: organizationClose,
     });
 }
-function salonTimeTueClose(day,salonOpen,salonClose){
+function organizationTimeTueClose(day,organizationOpen,organizationClose){
     $('.day-section-'+day+'close-emp').timepicker({
         timeFormat: 'h:i A',
         disableTextInput: true,
-        minTime: salonOpen,
-        maxTime: salonClose,
+        minTime: organizationOpen,
+        maxTime: organizationClose,
     });
 }
 //  wed
-function salonTimeWedOpen(day,salonOpen,salonClose){
+function organizationTimeWedOpen(day,organizationOpen,organizationClose){
     $('.day-section-'+day+'open-emp').timepicker({
         timeFormat: 'h:i A',
         disableTextInput: true,
-        minTime: salonOpen,
-        maxTime: salonClose,
+        minTime: organizationOpen,
+        maxTime: organizationClose,
     });
 }
-function salonTimeWedClose(day,salonOpen,salonClose){
+function organizationTimeWedClose(day,organizationOpen,organizationClose){
     $('.day-section-'+day+'close-emp').timepicker({
         timeFormat: 'h:i A',
         disableTextInput: true,
-        minTime: salonOpen,
-        maxTime: salonClose,
+        minTime: organizationOpen,
+        maxTime: organizationClose,
     });
 }
 // Thu
-function salonTimeThuOpen(day,salonOpen,salonClose){
+function organizationTimeThuOpen(day,organizationOpen,organizationClose){
     $('.day-section-'+day+'open-emp').timepicker({
         timeFormat: 'h:i A',
         disableTextInput: true,
-        minTime: salonOpen,
-        maxTime: salonClose,
+        minTime: organizationOpen,
+        maxTime: organizationClose,
     });
 }
-function salonTimeThuClose(day,salonOpen,salonClose){
+function organizationTimeThuClose(day,organizationOpen,organizationClose){
     $('.day-section-'+day+'close-emp').timepicker({
         timeFormat: 'h:i A',
         disableTextInput: true,
-        minTime: salonOpen,
-        maxTime: salonClose,
+        minTime: organizationOpen,
+        maxTime: organizationClose,
     });
 }
 // Fri
-function salonTimeFriOpen(day,salonOpen,salonClose){
+function organizationTimeFriOpen(day,organizationOpen,organizationClose){
     $('.day-section-'+day+'open-emp').timepicker({
         timeFormat: 'h:i A',
         disableTextInput: true,
-        minTime: salonOpen,
-        maxTime: salonClose,
+        minTime: organizationOpen,
+        maxTime: organizationClose,
     });
 }
-function salonTimeFriClose(day,salonOpen,salonClose){
+function organizationTimeFriClose(day,organizationOpen,organizationClose){
     $('.day-section-'+day+'close-emp').timepicker({
         timeFormat: 'h:i A',
         disableTextInput: true,
-        minTime: salonOpen,
-        maxTime: salonClose,
+        minTime: organizationOpen,
+        maxTime: organizationClose,
     });
 }
 // Sat
-function salonTimeSatOpen(day,salonOpen,salonClose){
+function organizationTimeSatOpen(day,organizationOpen,organizationClose){
     $('.day-section-'+day+'open-emp').timepicker({
         timeFormat: 'h:i A',
         disableTextInput: true,
-        minTime: salonOpen,
-        maxTime: salonClose,
+        minTime: organizationOpen,
+        maxTime: organizationClose,
     });
 }
-function salonTimeSatClose(day,salonOpen,salonClose){
+function organizationTimeSatClose(day,organizationOpen,organizationClose){
     $('.day-section-'+day+'close-emp').timepicker({
         timeFormat: 'h:i A',
         disableTextInput: true,
-        minTime: salonOpen,
-        maxTime: salonClose,
+        minTime: organizationOpen,
+        maxTime: organizationClose,
     });
 }
 // Time slot end
 
-function salonDayOff(day,base_url)
+function organizationDayOff(day,base_url)
 {
     $.ajax({
-        url: base_url + '/admin/salons/dayoff',
+        url: base_url + '/admin/organizations/dayoff',
         method: 'post',
         data: {day: day, _token: csrf},
         success: function(res) {},
@@ -968,7 +968,7 @@ function show_banner(id,base_url) {
         type:"GET",
         url:'banner/'+id,
         success: function(result){
-            $('#show_banner_sidebar .salon_size').attr('src', base_url+'/storage/images/banner/'+result.data.banner.image);
+            $('#show_banner_sidebar .organization_size').attr('src', base_url+'/storage/images/banner/'+result.data.banner.image);
             document.getElementById('banner_title').innerHTML = result.data.banner.title;
 
             $("#show_banner_sidebar").slideDown(50), $("#show_banner_sidebar").toggleClass("show_sidebar");
@@ -1012,7 +1012,7 @@ function show_offer(id,base_url) {
         type:"GET",
         url:'offer/'+id,
         success: function(result){
-            $('#show_offer_sidebar .salon_size').attr('src', base_url+'/storage/images/offer/'+result.data.offer.image);
+            $('#show_offer_sidebar .organization_size').attr('src', base_url+'/storage/images/offer/'+result.data.offer.image);
             document.getElementById('offer_title').innerHTML = result.data.offer.title;
             document.getElementById('offer_discount').innerHTML = result.data.offer.discount;
 
@@ -1033,7 +1033,7 @@ function show_reported_review(id,base_url) {
         success: function(result){
             $('#show_reported_review_sidebar .user_img').attr('src', base_url+'/storage/images/users/'+result.data.review.user.image);
             document.getElementById('user_name').innerHTML = result.data.review.user.name;
-            document.getElementById('salon_name').innerHTML = result.data.review.salon.name;
+            document.getElementById('organization_name').innerHTML = result.data.review.organization.name;
 
             document.getElementById('msg').innerHTML = result.data.review.message;
             $('#show_reported_review_sidebar #rate').html('');
@@ -1091,7 +1091,7 @@ function show_service(id,base_url) {
         type:"GET",
         url:'services/'+id,
         success: function(result){
-            $('#show_service_sidebar .salon_size').attr('src', base_url+'/storage/images/services/'+result.data.service.image);
+            $('#show_service_sidebar .organization_size').attr('src', base_url+'/storage/images/services/'+result.data.service.image);
             document.getElementById('service_name').innerHTML = result.data.service.name;
             document.getElementById('cat_name').innerHTML = result.data.service.category.name;
             document.getElementById('service_price').innerHTML = result.data.symbol +''+ result.data.service.price;
@@ -1111,7 +1111,7 @@ function show_gallery(id,base_url) {
         type:"GET",
         url:'gallery/'+id,
         success: function(result){
-            $('#show_gallery_sidebar .salon_size').attr('src', base_url+'/storage/images/gallery/'+result.data.gallery.image);
+            $('#show_gallery_sidebar .organization_size').attr('src', base_url+'/storage/images/gallery/'+result.data.gallery.image);
             $("#show_gallery_sidebar").slideDown(50), $("#show_gallery_sidebar").toggleClass("show_sidebar");
         },
         error: function(err){}
@@ -1128,7 +1128,7 @@ function show_review(id,base_url) {
         success: function(result){
             $('#show_review_sidebar .user_img').attr('src', base_url+'/storage/images/users/'+result.data.review.user.image);
             document.getElementById('user_name').innerHTML = result.data.review.user.name;
-            document.getElementById('salon_name').innerHTML = result.data.review.salon.name;
+            document.getElementById('organization_name').innerHTML = result.data.review.organization.name;
 
             document.getElementById('msg').innerHTML = result.data.review.message;
             $('#show_review_sidebar #rate').html('');

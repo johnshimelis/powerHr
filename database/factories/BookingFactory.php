@@ -23,7 +23,7 @@ class BookingFactory extends Factory
     {
         return [
             'booking_id' => '#23232',
-            'salon_id' => rand(0, 10),
+            'organization_id' => rand(0, 10),
             'user_id' => rand(0, 10),
             'emp_id' => rand(0, 10),
             'date' => $this->faker->date(),
