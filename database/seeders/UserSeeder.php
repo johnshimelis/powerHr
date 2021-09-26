@@ -21,13 +21,13 @@ class UserSeeder extends Seeder
         User::factory(10)->create(
             ['is_profile_complete'=>1]
             )->each(function($user) use ($disorders){
-            if($user->role=="Therapist"){
+            if($user->role==2){
             Therapist::factory(1)->create([
                 'user_id'=>$user->id
             ])->each(function($therapy) use ($disorders){
               $therapy->disorders()->attach($disorders->random(2,3));
             });}
-            else if($user->role=="Admin"){
+            else if($user->role==1){
                 Admin::factory(1)->create([
                     'user_id'=>$user->id
                 ]);

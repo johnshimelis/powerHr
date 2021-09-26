@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Schedule;
+use App\Models\Salon;
+use App\Models\Booking;
+use App\Models\Service;
+use App\Models\Employee;
+
+use Illuminate\Support\Facades;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class ScheduleController extends Controller
 {
-    public function createSession(Request $req){
+    public function createSession(Request $req)
+    {
         // if(Auth::check()){
         //     $schedule=Schedule::create([
         //         'date'=>$req->date,
@@ -19,7 +27,8 @@ class ScheduleController extends Controller
         // It can include date, time, type, client the schedule is with
     }
 
-    public function remind(){
+    public function remind()
+    {
         // send an email when the time is due for the session to begin
     }
 
@@ -30,9 +39,9 @@ class ScheduleController extends Controller
     // or when the therapists deems it fit 
     // maybe have some type of scoring system to track progress ***very optional***
 
-    public function completeTherapy( $var = null)
+    public function completeTherapy($var = null)
     {
         // - decided by the therapist
         // - when this happens the schedule would be cleared for other patients
-    }    
+    }
 }

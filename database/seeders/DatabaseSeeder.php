@@ -16,6 +16,12 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserSeeder::class);
         $this->call(Q_A_Seeder::class);
+       
+        $this->call(DisorderSeeder::class);
+        $this->call(DisorderTherapistSeeder::class);
+        // $this->call(SalonSeeder::class);
+        // $this->call(EmployeeSeeder::class);
+        // $this->call(BookingSeeder::class);
          
     }
 }

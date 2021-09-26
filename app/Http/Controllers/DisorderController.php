@@ -19,7 +19,9 @@ class DisorderController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json([
+            'disorders' => Disorder::all()
+        ]);
     }
 
     /**
@@ -29,7 +31,7 @@ class DisorderController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -40,7 +42,12 @@ class DisorderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $disorder = Disorder::create([
+            'name' => $request->name
+        ]);
+        return response()->json([
+            'message' => 'record saved successfully'
+        ]);
     }
 
     /**
@@ -74,7 +81,9 @@ class DisorderController extends Controller
      */
     public function update(Request $request, Disorder $disorder)
     {
-        //
+        $disorder = Disorder::find($disorder->id);
+        $disorder->name = $request->name;
+        $disorder->save();
     }
 
     /**

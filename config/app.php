@@ -162,6 +162,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Laravel\Sanctum\SanctumServiceProvider::class,
+        \Yajra\DataTables\DataTablesServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
 
         /*
@@ -230,6 +232,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'DataTables' => \Yajra\DataTables\Facades\DataTables::class,
 
     ],
 

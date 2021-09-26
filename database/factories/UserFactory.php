@@ -22,7 +22,7 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        $roles=array("Admin","Therapist","Patient");
+        $roles=array(1,2,3);
         return [
             'email' => $this->faker->unique()->safeEmail(),
             // 'email_verified_at' => now(),

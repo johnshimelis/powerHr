@@ -6,7 +6,7 @@ use App\Models\Therapist;
 use Illuminate\Http\Request;
 use App\Models\Disorder;
 use App\Models\User;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class TherapistController extends Controller
 {
