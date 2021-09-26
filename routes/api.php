@@ -27,7 +27,7 @@ use App\Http\Controllers\PatientController;
 
 //protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::post('/booking', [AppointmentUserApi::class, 'booking']);
+    Route::post('booking', [AppointmentUserApi::class, 'booking']);
 
     Route::get('all_users', [UserController::class, 'all_account']);
     Route::get('delete/{id}', [UserController::class, 'delete_account']);
