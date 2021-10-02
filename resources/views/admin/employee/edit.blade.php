@@ -60,13 +60,13 @@
         <div class="col-xl-8 order-xl-1">
             <div class="card bg-secondary shadow">
                 <div class="card-header border-0">
-                    <h3>{{__('Edit Employee')}}</h3>
+                    <h3>{{__('Edit Therapist')}}</h3>
                 </div>
                 <div class="card-body">
                     <div class="nav-wrapper rtl-icon">
                         <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i class="ni ni-single-02 mr-2"></i>{{__('Employee')}}</a>
+                                <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i class="ni ni-single-02 mr-2"></i>{{__('Therapist')}}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab" href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i class="ni ni-time-alarm mr-2"></i>{{__('Timing')}}</a>
@@ -101,7 +101,7 @@
                                                 {{-- email --}}
                                                 <div class="form-group">
                                                     <label for="email" class="form-control-label">{{__('Email')}} </label>
-                                                    <input type="text" class="form-control" value="{{old('email', $emp->email)}}" name="email" id="email" placeholder="{{__('Employee Email')}}" readonly>
+                                                    <input type="text" class="form-control" value="{{old('email', $emp->email)}}" name="email" id="email" placeholder="{{__('Therapist Email')}}" readonly>
                                                     @error('email')                                    
                                                         <div class="invalid-div">{{ $message }}</div>
                                                     @enderror

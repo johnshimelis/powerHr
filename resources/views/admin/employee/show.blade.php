@@ -52,7 +52,7 @@
                             <br>{{__('Email :')}} {{$emp->email}}
                         </div>
                         <hr class="my-4" />
-                        <a class="btn btn-primary text-white  rtl-float-none" href="{{url('admin/employee/edit/'.$emp->emp_id)}}"> {{__('Edit Employee')}} </a>
+                        <a class="btn btn-primary text-white  rtl-float-none" href="{{url('admin/employee/edit/'.$emp->emp_id)}}"> {{__('Edit Therapist')}} </a>
 
                     </div>
                 </div>
@@ -62,7 +62,7 @@
         <div class="col-xl-8 order-xl-1">
             <div class="card bg-secondary shadow">
                 <div class="card-header border-0">
-                    <h3>{{__('View Employee')}}</h3>
+                    <h3>{{__('View Therapist')}}</h3>
                 </div>
                 <div class="card-body rtl-icon">
                     <div class="nav-wrapper">

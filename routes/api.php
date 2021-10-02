@@ -8,6 +8,7 @@ use App\Http\Controllers\DisorderController;
 use App\Http\Controllers\TherapistController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AppointmentUserApi;
+use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\PatientController;
 
 /*
@@ -26,13 +27,16 @@ use App\Http\Controllers\PatientController;
 // });
 
 //protected routes
+Route::post('booking', [AppointmentUserApi::class, 'booking']);
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::post('booking', [AppointmentUserApi::class, 'booking']);
+
+    Route::post('createMeeting', [MeetingController::class, 'createAndJoinMeeting']);
 
     Route::get('all_users', [UserController::class, 'all_account']);
     Route::get('delete/{id}', [UserController::class, 'delete_account']);
     Route::get('search/{user_name}', [UserController::class, 'search_account']);
-    Route::post('update/{id}', [UserController::class, 'update_account']);
+    Route::post('update', [UserController::class, 'update_account']);
     Route::post('logout', [UserController::class, 'logout']);
     Route::post('upload', [UserController::class, 'upload_pic']);
     Route::get('survey', [SurveyController::class, 'questions_and_associated_answers']);
@@ -101,8 +105,6 @@ Route::post('/timeslot', [AppointmentUserApi::class ,'timeSlot']);
 Route::post('/selectemp', [AppointmentUserApi::class, 'selectEmp']);
 
 Route::middleware('auth:api')->group(function () {
-
-
     Route::get('/appointment', 'api\UserApiController@showAppointment');
     Route::get('/appointment/{id}', 'api\UserApiController@singleAppointment');
     Route::get('/appointment/cancel/{id}', 'api\UserApiController@cancelAppointment');

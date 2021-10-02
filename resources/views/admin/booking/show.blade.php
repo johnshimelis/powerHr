@@ -43,7 +43,7 @@
                                     <div class="col text-left" id="app_payment"></div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col h4 text-right">{{__('Employee Name :')}}</div>
+                                    <div class="col h4 text-right">{{__('Therapist Name :')}}</div>
                                     <div class="col text-left" id="emp_name"></div>
                                 </div>
                             </div>

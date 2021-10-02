@@ -17,8 +17,8 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('email')->unique();
             $table->string('password');
-            // $table->string('phone');
-            // $table->string('full_name');
+            $table->string('phone');
+            $table->string('full_name');
             // $table->string('role')->default('Patient');
             $table->integer('is_profile_complete')->default(0);
             $table->tinyInteger('status')->default('1');

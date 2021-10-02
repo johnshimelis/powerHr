@@ -55,28 +55,18 @@ class AppointmentUserApi extends Controller
     // select emp
     public function selectEmp(Request $request)
     {
-        dd($request);
         $request->validate([
             'start_time' => 'bail|required',
             'date' => 'bail|required',
         ]);
 
         $organization_id = Organization::first()->organization_id;
-        $emp_array = array(); // need to use the following code to fill this with employees
-
-        // gets employees and tries to get all the services by that employee
-
+        $emp_array = array();
         $emps_all = Employee::where([['organization_id', $organization_id], ['status', 1]])->get();
-        // $book_service = json_decode($request->service);
 
-        // $duration = Service::whereIn('service_id', $book_service)->sum('time') - 1;
         foreach ($emps_all as $emp) {
-            // $emp_service = json_decode($emp->service_id);
-            // foreach ($book_service as $ser) {
-            //     if (in_array($ser, $emp_service)) {
+
             array_push($emp_array, $emp->emp_id);
-            // }
-            // }
         }
         $master =  array();
         $emps = Employee::whereIn('emp_id', $emp_array)->get();
@@ -94,6 +84,7 @@ class AppointmentUserApi extends Controller
             }
         }
 
+
         $emps_final = array();
         foreach ($master as $emp) {
             $booking = Booking::where([['emp_id', $emp->emp_id], ['date', $date], ['start_time', $request['start_time']], ['booking_status', 'Approved']])
@@ -108,11 +99,10 @@ class AppointmentUserApi extends Controller
             array_push($new, $emp->emp_id);
         }
 
-        $emps_final_1 = Employee::whereIn('emp_id', '1')
-            ->get(['emp_id', 'organization_id'])->makeHidden(['organization', 'organization_id', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']);
-        $name = $emps_final_1->user()->first();
-
-        $emps_final_1->push('name', $name);
+        $emps_final_1 = Employee::whereIn('emp_id', $new)
+            ->get(['emp_id', 'organization_id', 'name'])->makeHidden(['organization', 'organization_id', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']);
+        
+          
 
         if (count($emps_final_1) > 0) {
             return response()->json(['msg' => 'Employees', 'data' => $emps_final_1, 'success' => true], 200);
@@ -124,12 +114,7 @@ class AppointmentUserApi extends Controller
     // booking / notification
     public function booking(Request $request)
     {
-        dd($request);
-        $request->validate([
-            'emp_id' => 'bail|required',
-            'date' => 'bail|required',
-            'start_time' => 'bail|required',
-        ]);
+        
 
         $organization_id = Organization::first()->organization_id;
         $booking = new Booking();
@@ -140,8 +125,9 @@ class AppointmentUserApi extends Controller
         $booking->start_time = $request->start_time;
         $booking->date = $request->date;
 
-        $booking->user_id = Auth()->user()->id;
-        $bid = rand(10000, 99999);
+        // $booking->user_id = Auth()->user()->id;
+        $booking->user_id = $request->id;
+         $bid = rand(10000, 99999);
         $booking->booking_id = '#' . $bid;
 
         $booking->booking_status = 'Pending';

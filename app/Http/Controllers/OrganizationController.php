@@ -153,47 +153,12 @@ class OrganizationController extends Controller
     public function update(Request $request, $id)
     {
         $new = Auth::id();        
-        $organization = Organization::where('owner_id', $new);
-        $request->validate([
-            'name' => 'bail|required',
-            'desc' => 'bail|required',
+        $organization = Organization::where('owner_id', $new)->first();
 
 
-            'sunopen' => 'required_if:sun,',
-            'sunclose' => 'required_if:sun,',
-
-            'monopen' => 'required_if:mon,',
-            'monclose' => 'required_if:mon,',
-
-            'tueopen' => 'required_if:tue,',
-            'tueclose' => 'required_if:tue,',
-
-            'wedopen' => 'required_if:wed,',
-            'wedclose' => 'required_if:wed,',
-
-            'thuopen' => 'required_if:thu,',
-            'thuclose' => 'required_if:thu,',
-
-            'friopen' => 'required_if:fri,',
-            'friclose' => 'required_if:fri,',
-
-            'satopen' => 'required_if:sat,',
-            'satclose' => 'required_if:sat,'
-        ]);
-
-        $organization = Organization::find($organization);
-
+        $organization = Organization::find($organization)->first();
         $organization->name = $request->name;
-        $organization->desc = $request->desc;
-
-        $organization->address = $request->address;
-        $organization->zipcode = $request->zipcode;
-        $organization->city = ucfirst($request->city);
-        $organization->state = ucfirst($request->state);
-        $organization->country = ucfirst($request->country);
-        $organization->website = $request->website;
-        $organization->phone = $request->phone;
-        $organization->gender = $request->gender;
+        // $organization->desc = $request->desc;
 
         if ($request->sunopen == null || $request->sunclose == null) {
             $organization->sun = json_encode(array('open' => $request->sunopen, 'close' => $request->sunclose));
@@ -236,6 +201,7 @@ class OrganizationController extends Controller
         } else {
             $organization->sat = json_encode(array('open' => Carbon::parse($request->satopen)->format('H:i'), 'close' => Carbon::parse($request->satclose)->format('H:i')));
         }
+        // dd($organization);
         $organization->save();
         return redirect('/admin/organization');
     }

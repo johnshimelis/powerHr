@@ -54,6 +54,8 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'phone',
+        'full_name',
         'is_profile_complete'
     ];
 

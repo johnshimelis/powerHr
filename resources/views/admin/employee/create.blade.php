@@ -14,13 +14,13 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0 text-center">
-                    <span class="h3">{{__('Add Employee')}}</span>
+                    <span class="h3">{{__('Add Therapist')}}</span>
                 </div>
                 <div class="mx-4 ">
                     <div class="nav-wrapper">
                         <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i class="ni ni-single-02 mr-2"></i>{{__('Employee')}}</a>
+                                <a class="nav-link mb-sm-3 mb-md-0 " id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i class="ni ni-single-02 mr-2"></i>{{__('Therapist')}}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab" href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i class="ni ni-time-alarm mr-2"></i>{{__('Timing')}}</a>
@@ -49,7 +49,7 @@
                                                 {{-- name --}}
                                                 <div class="form-group">
                                                     <label class="form-control-label" for="name">{{__('Name')}}</label>
-                                                    <input type="text" value="{{old('name')}}" name="name" id="name" class="form-control" placeholder="{{__('Employee Name')}}"  autofocus>
+                                                    <input type="text" value="{{old('name')}}" name="name" id="name" class="form-control" placeholder="{{__('Therapist Name')}}"  autofocus>
                                                     @error('name')                                    
                                                         <div class="invalid-div">{{ $message }}</div>
                                                     @enderror
@@ -58,7 +58,7 @@
                                                 {{-- email --}}
                                                 <div class="form-group">
                                                     <label for="email" class="form-control-label">{{__('Email')}} </label>
-                                                    <input type="text" value="{{old('email')}}" class="form-control" name="email" id="email" placeholder="{{__('Employee Email')}}" >
+                                                    <input type="text" value="{{old('email')}}" class="form-control" name="email" id="email" placeholder="{{__('Therapist Email')}}" >
                                                     @error('email')                                    
                                                         <div class="invalid-div">{{ $message }}</div>
                                                     @enderror

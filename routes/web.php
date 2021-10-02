@@ -19,6 +19,9 @@ Auth::routes();
 Route::get('/', function () {
     return redirect('admin/login');
 });
+Route::get('/admin/logout', function () {
+    return redirect('admin/login');
+});
 Route::get('/login', function () {
     return redirect('admin/login');
 })->name('login');
@@ -31,17 +34,8 @@ Route::post('/admin/organization/store', [OrganizationController::class, 'store'
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     // Route::prefix('admin')->group(function () {
     Route::get('admin/logout', [UserController::class, 'admin_logout']);
-
     // Dahboard
     Route::get('/dashboard', [DashboardController::class, 'index']);
-    Route::get('/adminuserchartdata', [DashboardController::class, 'adminUserChartData']);
-    Route::get('/adminuserchartmonthdata', [DashboardController::class, 'adminUserMonthChartData']);
-    Route::get('/adminusercharweekdata', [DashboardController::class, 'adminUserWeekChartData']);
-    Route::get('/adminrevenuechartdata', [DashboardController::class, 'adminRevenueChartData']);
-    Route::get('/adminrevenuechartmonthdata', [DashboardController::class, 'adminRevenueMonthChartData']);
-    Route::get('/adminrevenuecharweekdata', [DashboardController::class, 'adminRevenueWeekChartData']);
-
-
 
     //Employees
     Route::resource('/employee', EmployeeController::class);
@@ -53,9 +47,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('/employee/update/{id}', [EmployeeController::class, 'update']);
     Route::post('/employee/hideEmp', [EmployeeController::class, 'hideEmp']);
     Route::get('/employee/delete/{id}', [EmployeeController::class, 'destroy']);
-    Route::get('/book', function () {
-        return BookingController::class;
-    });
     //booking
     // Route::resource('/booking', 'admin\BookingController');
     Route::get('/booking', [BookingController::class, 'index']);
@@ -68,10 +59,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('/booking/paymentcount', [BookingController::class, 'paymentcount']);
     Route::post('/booking/timeslot', [BookingController::class, 'timeslot']);
     Route::post('/booking/selectemployee', [BookingController::class, 'selectemployee']);
-
-    // Calender
-    Route::resource('/calendar', CalendarController::class);
-    // Route::get('/calendar', 'admin\CalendarController@index');
 
     // //users admin
     Route::resource('/users', UserDisplayController::class);

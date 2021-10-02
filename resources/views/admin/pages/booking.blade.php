@@ -42,30 +42,11 @@
                                         <th>{{$bookings->firstItem() + $key}}</th>
                                         <td>{{$booking->booking_id}}</td>
                                         <td>{{$booking->user->name}}</td>
-                                        <td>
-                                            <div class="avatar-group">
-                                                @foreach ($booking->services as $service)
-                                                    <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="{{$service->name}}">
-                                                        <img alt="service" class="service_icon" src="{{asset('storage/images/services/'.$service->image)}}">
-                                                    </a>
-                                                @endforeach
-                                            </div>
-                                        </td>
+                                        
                                         <td>{{$booking->date}}</td>
                                         <td>{{$booking->employee->name}}</td>
                                         <td>{{$booking->start_time}} To {{$booking->end_time}}</td>
-                                        <td>{{$symbol}}{{$booking->payment}}</td>
-                                        <td class="text-center">
-                                            @if ($booking->payment_status == 0)
-                                                <span class="badge badge-pill badge-warning">{{__('Unpaid')}}</span>
-                                            @else
-                                                @if ($booking->payment_type == "LOCAL" || $booking->payment_type == "Local")
-                                                    <span class="badge badge-pill badge-success">{{__('Paid')}}</span>
-                                                @else
-                                                    <span class="badge badge-pill badge-success">Stripe</span>
-                                                @endif
-                                            @endif
-                                        </td>
+                                        
                                         <td>
                                             <select class="form-control" onchange="changeStatus({{$booking->id}})" name="selector" id="selector{{$booking->id}}" {{$booking->booking_status == "Completed" || $booking->booking_status == "Cancel"?'disabled': ''}} >
                                                 <option value="Pending" {{$booking->booking_status == "Pending"?'selected': ''}} disabled>Pending</option>

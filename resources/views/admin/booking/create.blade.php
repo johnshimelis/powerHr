@@ -15,6 +15,7 @@
                             $id = rand(10000,99999);
                         ?>
                         
+                        
                         <div class="form-group">
                             <label class="form-control-label" for="booking_id">{{__('Booking id')}}</label>
                             <input type="text" name="booking_id" value="#{{$id}}" id="booking_id" class="form-control" placeholder="Booking id" readonly>
@@ -26,7 +27,8 @@
                             <select class="form-control select2" name="user_id" id="services"  dir="{{ session()->has('direction')&& session('direction') == 'rtl'? 'rtl':''}}">
                                 <option disabled selected value> {{__('-- Select Client --')}} </option>
                                 @foreach ($users as $user)
-                                    <option value={{$user->id}}>{{$user->name}}</option>
+                                
+                                    <option style="color:black;" value={{$user->id}}>{{$user->email}}</option>
                                 @endforeach
                             </select>
                             <div class="invalid-div"><span class="user_id"></span></div>
@@ -49,9 +51,9 @@
                         
                         {{-- Employees --}}
                         <div class="form-group">
-                            <label class="form-control-label">{{__('Employee')}}</label>
+                            <label class="form-control-label">{{__('Therapist')}}</label>
                             <select class="form-control select2 emp_id" name="emp_id" id="emp_id"  dir="{{ session()->has('direction')&& session('direction') == 'rtl'? 'rtl':''}}">
-                                <option disabled selected> {{__('-- Select Employee --')}} </option>
+                                <option disabled selected> {{__('-- Select Therapist --')}} </option>
                             </select>   
                             <div class="invalid-div"><span class="emp_id"></span></div>
                         </div>

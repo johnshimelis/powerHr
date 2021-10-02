@@ -33,7 +33,7 @@
                                 </div> --}}
                                 <div>
                                     <span class="heading">{{count($emps)}}</span>
-                                    <span class="description">{{__('Employee')}}</span>
+                                    <span class="description">{{__('Therapist')}}</span>
                                 </div>
                                 <div>
                                     <span class="heading">{{count($users)}}</span>

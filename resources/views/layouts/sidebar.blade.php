@@ -80,7 +80,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('admin/employee*')  ? 'active' : ''}}" href="{{url('admin/employee')}}">
-                    <span class="nav-link-text">{{ __('Employee') }}</span>
+                    <span class="nav-link-text">{{ __('Therapist') }}</span>
                     </a>
                 </li>
 

@@ -4882,7 +4882,7 @@
   }
   .btn-block:hover, .btn-block:focus{
       background-color: var(--primary_color_hover) !important;
-      color: white !important;
+      color: rgb(113, 44, 202) !important;
   }
   .signup-label {
     display: block;

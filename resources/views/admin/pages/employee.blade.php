@@ -12,7 +12,7 @@
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header border-0">
-                    <span class="h3">{{__('Employee table')}}</span>
+                    <span class="h3">{{__('Therapist table')}}</span>
                     <button class="btn btn-primary addbtn float-right p-2"><a href="{{url('admin/employee/create')}}"><i class="fas fa-plus mr-1"></i>{{__('Add New')}}</a></button>
                 </div>
                 <!-- table -->

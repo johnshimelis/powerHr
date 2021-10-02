@@ -10,7 +10,7 @@ use App\Models\Booking;
 use App\Models\Service;
 use App\Models\User;
 use App\Models\Employee;
-
+use Auth;
 use Carbon\Carbon;
 
 
@@ -18,6 +18,7 @@ class BookingController extends Controller
 {
     public function index()
     {
+        // dd(Auth()->user()->id);
         $organization = Organization::where('owner_id', Auth()->user()->id)->first();
         $bookings = Booking::where('organization_id', $organization->organization_id)
             ->orderBy('id', 'DESC')
@@ -34,6 +35,7 @@ class BookingController extends Controller
         $organization_id = Organization::where('owner_id', Auth()->user()->id)->first()->organization_id;
         // $services = Service::where('organization_id', $organization_id)->get();
         $users = User::where([['status', 1], ['role', 3]])->get();
+        dd($users);
         $emps = Employee::where([['status', 1], ['organization_id', $organization_id]])->get();
 
         return view('admin.booking.create', compact('users', 'emps'));

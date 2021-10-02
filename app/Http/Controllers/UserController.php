@@ -25,26 +25,21 @@ class UserController extends Controller
         if ($fields->fails()) {
             return response($fields->errors());
         }
-
         $user = User::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => $request->role,
+            'phone' => $request->phone,
+            'full_name' => $request->full_name,
         ]);
-
+        // dd($user);
         $token = $user->createToken('myapptoken')->plainTextToken;
         // $user->merge($token);
-        $response = [
-            'data' => [
-                [
-                    'user' => $user,
-                    'token' => $token
-                ]
-            ]
 
-        ];
-
-        return response($response, 201);
+        return response()->json([
+            'user' => $user,
+            'token' => $token
+        ]);
     }
 
     public function login(Request $request)
@@ -63,15 +58,12 @@ class UserController extends Controller
             ], 401);
         }
         $token = $user->createToken('myapptoken')->plainTextToken;
-        $response = [
-            "data" => [
-                'user' => $user,
-                'token' => $token
-            ]
-
-        ];
-
-        return response($response, 201);
+        // $response = [];
+        // return response()->json(["data" => [
+        //     'user' => $user,
+        //     'token' => $token
+        // ]]);
+        return response()->json(['user' => $user, 'token' => $token]);
     }
     public function admin()
     {
@@ -89,8 +81,10 @@ class UserController extends Controller
                 'password' => 'required|string',
             ]
         );
+        // dd($fields);
         $user = User::where('email', $fields['email'])->first();
-        if($user->role != 1) return view('admin.login.login');
+        // dd($user);
+        if ($user->role != 1) return view('admin.login.login');
         if (!$user || !Hash::check($fields['password'], $user->password)) {
             return response([
                 "message" => "Incorrect Credentials. Please check that both your email and password are correct"
@@ -104,7 +98,7 @@ class UserController extends Controller
     public function admin_logout()
     {
         Auth::logout();
-        return redirect('/');
+        return redirect('/admin/dashboard');
     }
 
     public function logout(Request $request)
@@ -113,18 +107,21 @@ class UserController extends Controller
         return [
             'message' => 'logged out'
         ];
-
-
-
-        // if(session()->has('user')){
-        //     session()->pull('user');
-        //     return ['message'=>'logged out succesfully'];
-        // }
-        // else{
-        //     return ['message'=>'login first'];
-        // }
     }
 
+    //update user account
+    public function update_account(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+        $user->full_name = $request->full_name;
+        $user->role = $request->role;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->is_profile_complete = $request->is_profile_complete;
+        $user->status = $request->status;
+        $user->save();
+        return response()->json(['user' => $user, 'token' => $request->token]);
+    }
 
     //fetch all users account
     public function all_account()
@@ -140,21 +137,7 @@ class UserController extends Controller
         $user->delete();
         return (['message' => 'Deleted Succesfully']);
     }
-    //update user account
-    public function update_account($id, Request $req)
-    {
-        $user = User::find($id);
-        $user->name = $req->name;
-        $user->role = $req->roles;
-        $user->email = $req->email;
-        if (Hash::check($req->old_pass, $user->password)) {
-            $user->password = Hash::make($req->pass);
-            $user->save();
-            return $user;
-        } else {
-            return ['message' => 'Password Error'];
-        }
-    }
+
     //search user by name or email
     public function search_account($user_name)
     {
